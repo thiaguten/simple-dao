@@ -33,7 +33,6 @@ public abstract class AbstractSpringPersistenceProviderTest extends AbstractTran
         for (int i = 0; i < INSERT_PARAMS.length; i++) {
 
             User user = new User();
-            user.setId(i + 1L);
             user.setName(INSERT_PARAMS[i]);
 
             logInfoHandler(user.toString());

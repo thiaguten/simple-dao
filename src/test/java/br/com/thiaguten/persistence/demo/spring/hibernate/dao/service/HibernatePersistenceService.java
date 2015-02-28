@@ -21,7 +21,7 @@ public class HibernatePersistenceService extends HibernatePersistenceProvider {
     private SessionFactory sessionFactory;
 
     @Override
-    protected Session getSession() {
+    public Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
@@ -50,13 +50,13 @@ public class HibernatePersistenceService extends HibernatePersistenceProvider {
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK id) {
-        super.deleteById(entityClazz, id);
+    public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK pk) {
+        super.deleteById(entityClazz, pk);
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK id) {
-        return super.findById(entityClazz, id);
+    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
+        return super.findById(entityClazz, pk);
     }
 
     @Override

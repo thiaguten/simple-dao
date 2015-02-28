@@ -1,3 +1,18 @@
+/**
+ * Copyright 2015 Thiago Gutenberg Carvalho da Costa
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package br.com.thiaguten.persistence.demo.manual.hibernate.dao.strategy;
 
 import br.com.thiaguten.persistence.Persistable;
@@ -11,6 +26,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Hibernate persistence strategy
+ *
+ * @author Thiago Gutenberg
+ */
 public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
 
     static {
@@ -18,7 +38,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    protected Session getSession() {
+    public Session getSession() {
         return HibernateUtils.getSession();
     }
 
@@ -77,11 +97,11 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK id) {
+    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
         T t = null;
         try {
             HibernateUtils.beginTransaction();
-            t = super.findById(entityClazz, id);
+            t = super.findById(entityClazz, pk);
             HibernateUtils.commitTransaction();
         } catch (Exception e) {
             HibernateUtils.rollbackTransaction();

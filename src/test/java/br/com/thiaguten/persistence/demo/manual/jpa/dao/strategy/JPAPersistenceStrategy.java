@@ -1,3 +1,18 @@
+/**
+ * Copyright 2015 Thiago Gutenberg Carvalho da Costa
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package br.com.thiaguten.persistence.demo.manual.jpa.dao.strategy;
 
 import br.com.thiaguten.persistence.Persistable;
@@ -10,6 +25,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * JPA persistence strategy
+ *
+ * @author Thiago Gutenberg
+ */
 public class JPAPersistenceStrategy extends JPAPersistenceProvider {
 
     static {
@@ -22,10 +42,10 @@ public class JPAPersistenceStrategy extends JPAPersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK id) {
+    public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK pk) {
         try {
             JPAUtils.beginTransaction();
-            super.deleteById(entityClazz, id);
+            super.deleteById(entityClazz, pk);
             JPAUtils.commitTransaction();
         } catch (Exception e) {
             JPAUtils.rollbackTransaction();
@@ -115,9 +135,9 @@ public class JPAPersistenceStrategy extends JPAPersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK id) {
+    public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
         try {
-            return super.findById(entityClazz, id);
+            return super.findById(entityClazz, pk);
         } finally {
             JPAUtils.closeEntityManager();
         }

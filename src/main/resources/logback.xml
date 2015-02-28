@@ -5,9 +5,9 @@
         <encoder>
             <charset>UTF-8</charset>
             <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
-            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
         </encoder>
     </appender>
+
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${user.home}/.simple-dao/logs/simple-dao.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

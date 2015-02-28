@@ -1,3 +1,18 @@
+/**
+ * Copyright 2015 Thiago Gutenberg Carvalho da Costa
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package br.com.thiaguten.persistence.provider;
 
 import br.com.thiaguten.persistence.Persistable;
@@ -6,25 +21,29 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Define operation for a persistence provider implementation.
+ * @author Thiago Gutenberg
+ */
 public interface PersistenceProvider {
 
     /**
      * Find an entity by its primary key.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param <PK>        the primary key
      * @param entityClazz the entity class
-     * @param id          the primary key
+     * @param pk          the primary key
      * @return the entity
      */
     <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(
             final Class<T> entityClazz,
-            final PK id);
+            final PK pk);
 
     /**
      * Load all entities.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @return the list of entities
      */
@@ -33,7 +52,7 @@ public interface PersistenceProvider {
     /**
      * Load entities.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @param firstResult the value of first result
      * @param maxResults  the value of max result
@@ -45,10 +64,10 @@ public interface PersistenceProvider {
             final int maxResults);
 
     /**
-     * Find using a named query.
+     * Find by named query.
      *
-     * @param <T>         the persistable pojo the persistable pojo
-     * @param entityClazz the entity class the entity class
+     * @param <T>         the entity
+     * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
      * @return the list of entities
@@ -60,9 +79,9 @@ public interface PersistenceProvider {
     );
 
     /**
-     * Find using a named query.
+     * Find by named query.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
@@ -75,9 +94,9 @@ public interface PersistenceProvider {
     );
 
     /**
-     * Find by JPQL/HQL...
+     * Find by query (JPQL/HQL, etc) and parameters.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @param query       the typed query
      * @param params      the typed query parameters
@@ -91,7 +110,7 @@ public interface PersistenceProvider {
     /**
      * Count all entities.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @return the number of entities
      */
@@ -112,7 +131,7 @@ public interface PersistenceProvider {
             final Map<String, ?> params);
 
     /**
-     * Count by JPQL/HQL...
+     * Count by (JPQL/HQL, etc) and parameters.
      *
      * @param <T>         the number pojo
      * @param resultClazz the number class
@@ -126,39 +145,39 @@ public interface PersistenceProvider {
             final Map<String, ?> params);
 
     /**
-     * Save an entity. This can be either a INSERT or UPDATE in the database.
+     * Save an entity.
      *
-     * @param <T>    the persistable pojo
+     * @param <T>    the entity
      * @param entity the entity to save
      * @return the saved entity
      */
     <T extends Persistable<? extends Serializable>> T save(final T entity);
 
     /**
-     * Update an entity from the database.
+     * Update an entity.
      *
-     * @param <T>    the persistable pojo
+     * @param <T>    the entity
      * @param entity the entity to update
      * @return the updated entity
      */
     <T extends Persistable<? extends Serializable>> T update(final T entity);
 
     /**
-     * Delete an entity from the database.
+     * Delete an entity.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param entityClazz the entity class
      * @param entity      the entity to delete
      */
     <T extends Persistable<? extends Serializable>> void delete(final Class<T> entityClazz, final T entity);
 
     /**
-     * Delete an entity from the database.
+     * Delete an entity.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the entity
      * @param <PK>        the primary key
      * @param entityClazz the entity class
-     * @param id          primary key of the entity to delete
+     * @param pk          primary key of the entity to delete
      */
-    <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(final Class<T> entityClazz, final PK id);
+    <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(final Class<T> entityClazz, final PK pk);
 }
