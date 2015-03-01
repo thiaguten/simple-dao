@@ -5,7 +5,7 @@ jdk:
 install: /bin/true
 
 script:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -V -B
-  - mvn clean test coveralls:report -V -pl simple-dao -P coverage 
+  - mvn install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -V -B
+  - mvn clean test coveralls:report -V -P coverage
   - jdk_switcher use openjdk6
-  - mvn test -V -pl simple-dao
+  - mvn test -V
