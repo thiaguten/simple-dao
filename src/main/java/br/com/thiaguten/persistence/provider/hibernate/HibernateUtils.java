@@ -53,7 +53,7 @@ public abstract class HibernateUtils {
     }
 
     private static Map toMap(Properties properties) {
-        Map map = new HashMap<>();
+        Map map = new HashMap();
         for (String name : properties.stringPropertyNames()) {
             map.put(name, properties.getProperty(name));
         }
