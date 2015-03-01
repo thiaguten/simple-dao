@@ -8,6 +8,37 @@
     <artifactId>simple-dao</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>simple-dao</name>
+    <description>DAO design pattern API that greatly facilitates the exchange and use of multiple persistence
+        providers
+    </description>
+    <url>https://github.com/thiaguten/simple-dao</url>
+    <inceptionYear>2015</inceptionYear>
+
+    <scm>
+        <connection>scm:git:git@github.com:thiaguten/simple-dao.git</connection>
+        <developerConnection>scm:git:git@github.com:thiaguten/simple-dao.git</developerConnection>
+        <url>git@github.com:thiaguten/simple-dao.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Thiago Gutenberg Carvalho da Costa</name>
+            <email>thiaguten@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>
+
     <properties>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,13 +125,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- hikaricp -->
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP-java6</artifactId>
-            <version>${hikaricp.version}</version>
-        </dependency>
-
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -126,6 +150,13 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- hikaricp -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP-java6</artifactId>
+            <version>${hikaricp.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -142,8 +173,47 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <show>public</show>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 
