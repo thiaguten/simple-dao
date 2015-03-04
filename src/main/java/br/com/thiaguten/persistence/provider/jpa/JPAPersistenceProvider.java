@@ -240,7 +240,7 @@ public abstract class JPAPersistenceProvider implements PersistenceProvider {
     @SuppressWarnings("unchecked")
     private <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteByEntityOrId(Class<T> entityClazz, T entity, PK pk) {
         if (pk == null && (entity == null || entity.getId() == null)) {
-            throw new PersistenceException("Não foi possível deletar. ID não informado");
+            throw new PersistenceException("Could not delete. ID is null.");
         }
 
         PK id = pk;

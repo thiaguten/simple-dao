@@ -72,7 +72,7 @@ public abstract class HibernateUtils {
             }
             return session;
         }
-        throw new ExceptionInInitializerError("SessionFactory não criado ou está fechado. Deverá ser criado novamente através da chamada do método buildSessionFactory");
+        throw new ExceptionInInitializerError("SessionFactory not created or is closed. Should be re-created through the method buildSessionFactory");
     }
 
     /**

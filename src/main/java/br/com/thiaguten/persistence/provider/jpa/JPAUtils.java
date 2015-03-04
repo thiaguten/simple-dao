@@ -56,7 +56,7 @@ public abstract class JPAUtils {
             }
             return em;
         }
-        throw new ExceptionInInitializerError("EntityManagerFactory não criado ou está fechado. Deverá ser criado novamente através da chamada do método createEntityManagerFactory");
+        throw new ExceptionInInitializerError("EntityManagerFactory not created or is closed. Should be re-created through the method createEntityManagerFactory");
 
     }
 
