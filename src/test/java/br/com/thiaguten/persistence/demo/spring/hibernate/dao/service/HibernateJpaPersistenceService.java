@@ -1,31 +1,26 @@
 package br.com.thiaguten.persistence.demo.spring.hibernate.dao.service;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.hibernate.HibernatePersistenceProvider;
+import br.com.thiaguten.persistence.provider.hibernate.HibernateJpaPersistenceProvider;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.hibernate.criterion.Criterion;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)
-//@Service("hibernatePersistenceService")
-public class HibernatePersistenceService extends HibernatePersistenceProvider {
+//@Service("hibernateJpaPersistenceService")
+public class HibernateJpaPersistenceService extends HibernateJpaPersistenceProvider {
 
-    private SessionFactory sessionFactory;
-
+    @PersistenceContext
+    private EntityManager entityManager;
+    
     @Override
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
     @Override
@@ -97,8 +92,8 @@ public class HibernatePersistenceService extends HibernatePersistenceProvider {
         return super.countByQueryAndNamedParams(resultClazz, query, params);
     }
 
-    ///////
-
+    /////// HIBERNATE CRITERIA
+    
     @Override
     public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         return super.findByCriteria(entityClazz, criterions);

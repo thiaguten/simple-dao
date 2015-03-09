@@ -20,9 +20,9 @@ public class HibernatePersistenceProviderTest extends AbstractSpringPersistenceP
 
     @BeforeClass
     public static void init() {
-        LOG.info("******************************************");
-        LOG.info("HIBERNATE - Transactions Management Spring");
-        LOG.info("******************************************");
+        LOG.info("***********************************************");
+        LOG.info("HIBERNATE CORE - Transactions Management Spring");
+        LOG.info("***********************************************");
     }
 
     @Override

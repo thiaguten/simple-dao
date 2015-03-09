@@ -16,7 +16,6 @@
 package br.com.thiaguten.persistence.demo;
 
 import br.com.thiaguten.persistence.dao.BaseDAO;
-import br.com.thiaguten.persistence.demo.User;
 
 /**
  * User DAO interface

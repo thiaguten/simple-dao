@@ -6,9 +6,8 @@ import br.com.thiaguten.persistence.demo.UserDAO;
 import br.com.thiaguten.persistence.provider.PersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 
-@Repository("userHibernateDAO")
+//@Repository("userHibernateDAO")
 public class UserDAOHibernateImpl extends GenericBaseDAO<User, Long> implements UserDAO {
 
     @Autowired
@@ -18,5 +17,9 @@ public class UserDAOHibernateImpl extends GenericBaseDAO<User, Long> implements 
     @Override
     public PersistenceProvider getPersistenceProvider() {
         return persistenceProvider;
+    }
+
+    public void setPersistenceProvider(PersistenceProvider persistenceProvider) {
+        this.persistenceProvider = persistenceProvider;
     }
 }
