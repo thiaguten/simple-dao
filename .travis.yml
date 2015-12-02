@@ -3,7 +3,7 @@ jdk:
   - oraclejdk8
 install: /bin/true
 script:
-  - mvn install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+  - mvn install -Dskip.unit.tests=true -Dmaven.javadoc.skip=true -V -B
   - jdk_switcher use openjdk6
   - mvn test
 notifications:
