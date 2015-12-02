@@ -4,11 +4,11 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-			http://www.springframework.org/schema/beans/spring-beans.xsd
-			http://www.springframework.org/schema/tx
-			http://www.springframework.org/schema/tx/spring-tx.xsd
-			http://www.springframework.org/schema/context
-			http://www.springframework.org/schema/context/spring-context.xsd">
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <description>
         Spring Hibernate XML configurations - Object Relational Mapping (ORM) Data Access
@@ -20,11 +20,11 @@
     <context:component-scan base-package="br.com.thiaguten.persistence.demo.spring.hibernate"/>
 
     <bean id="hibernatePersistenceService" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernatePersistenceService"/>
-    
+
     <bean id="userHibernateDAO" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.UserDAOHibernateImpl">
         <property name="persistenceProvider" ref="hibernatePersistenceService"/>
     </bean>
-    
+
     <!-- HikariCP configuration -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="poolName" value="SpringHikariCP"/>

@@ -21,6 +21,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+//import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,19 +37,34 @@ public abstract class HibernateUtils {
     private static Session session;
     private static SessionFactory sessionFactory;
 
+    private HibernateUtils() {
+        // suppress default constructor
+        // for noninstantiability
+        throw new AssertionError();
+    }
+
     /**
-     * Build session factory
+     * Build session factory with hibernate resource ("hibernate.cfg.xml")
      *
      * @return session factory
      */
     public static SessionFactory buildSessionFactory() {
+        return buildSessionFactory("hibernate.cfg.xml");
+    }
+
+    /**
+     * Build session factory with the specified hibernate resource
+     *
+     * @param resource The hibernate resource to use
+     * @return session factory
+     */
+    public static SessionFactory buildSessionFactory(String resource) {
         Configuration cfg = new Configuration();
-        sessionFactory = cfg.configure("hibernate.cfg.xml")
+        sessionFactory = cfg.configure(resource)
                 .buildSessionFactory(new StandardServiceRegistryBuilder()
                         .applySettings(toMap(cfg.getProperties())).build());
 
         session = sessionFactory.getCurrentSession();
-
         return sessionFactory;
     }
 
@@ -97,7 +113,7 @@ public abstract class HibernateUtils {
      * Begin transaction
      */
     public static void beginTransaction() {
-        if (!getTransaction().isActive()) {
+        if (!isTransactionActive()) {
             getTransaction().begin();
         }
     }
@@ -106,7 +122,7 @@ public abstract class HibernateUtils {
      * Commit transaction
      */
     public static void commitTransaction() {
-        if (getTransaction().isActive()) {
+        if (isTransactionActive()) {
             getTransaction().commit();
         }
     }
@@ -115,9 +131,19 @@ public abstract class HibernateUtils {
      * Rollback transaction
      */
     public static void rollbackTransaction() {
-        if (getTransaction().isActive()) {
+        if (isTransactionActive()) {
             getTransaction().rollback();
         }
+    }
+
+    /**
+     * Checks if a transaction is active
+     *
+     * @return true if the transaction is active, otherwise false
+     */
+    public static boolean isTransactionActive() {
+        return getTransaction().isActive(); // hibernate 4 approach
+//        return getTransaction().getStatus().isOneOf(TransactionStatus.ACTIVE); // hibernate 5 approach
     }
 
     /**

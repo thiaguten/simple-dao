@@ -32,6 +32,12 @@ public abstract class JPAUtils {
     @PersistenceContext
     private static EntityManager em;
 
+    private JPAUtils() {
+        // suppress default constructor
+        // for noninstantiability
+        throw new AssertionError();
+    }
+
     /**
      * Create entity manager factory
      *
