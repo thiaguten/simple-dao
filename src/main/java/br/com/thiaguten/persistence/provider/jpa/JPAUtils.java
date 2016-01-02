@@ -25,7 +25,7 @@ import java.io.Serializable;
  *
  * @author Thiago Gutenberg
  */
-public abstract class JPAUtils {
+public final class JPAUtils {
 
     private static EntityManagerFactory emf;
 

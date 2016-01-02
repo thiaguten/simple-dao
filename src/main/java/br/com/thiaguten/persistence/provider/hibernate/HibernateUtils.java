@@ -32,7 +32,7 @@ import java.util.Properties;
  *
  * @author Thiago Gutenberg
  */
-public abstract class HibernateUtils {
+public final class HibernateUtils {
 
     private static Session session;
     private static SessionFactory sessionFactory;
