@@ -42,59 +42,59 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
         return HibernateUtils.getSession();
     }
 
-    @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
-        try {
-            return super.findByCriteria(entityClazz, criterions);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
-
-    @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions, int firstResult, int maxResults) {
-        try {
-            return super.findByCriteria(entityClazz, criterions, firstResult, maxResults);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
-
-    @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions, boolean cacheable, int firstResult, int maxResults) {
-        try {
-            return super.findByCriteria(entityClazz, criterions, cacheable, firstResult, maxResults);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
-
-    @Override
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
-        try {
-            return super.findUniqueResultByCriteria(entityClazz, criterions);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
-
-    @Override
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions, boolean cacheable) {
-        try {
-            return super.findUniqueResultByCriteria(entityClazz, criterions, cacheable);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
-
-    @Override
-    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
-        try {
-            return super.countByCriteria(entityClazz, resultClazz, criterions);
-        } finally {
-            HibernateUtils.closeSession();
-        }
-    }
+//    @Override
+//    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
+//        try {
+//            return super.findByCriteria(entityClazz, criterions);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
+//
+//    @Override
+//    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions, int firstResult, int maxResults) {
+//        try {
+//            return super.findByCriteria(entityClazz, criterions, firstResult, maxResults);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
+//
+//    @Override
+//    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions, boolean cacheable, int firstResult, int maxResults) {
+//        try {
+//            return super.findByCriteria(entityClazz, criterions, cacheable, firstResult, maxResults);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
+//
+//    @Override
+//    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
+//        try {
+//            return super.findUniqueResultByCriteria(entityClazz, criterions);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
+//
+//    @Override
+//    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions, boolean cacheable) {
+//        try {
+//            return super.findUniqueResultByCriteria(entityClazz, criterions, cacheable);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
+//
+//    @Override
+//    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
+//        try {
+//            return super.countByCriteria(entityClazz, resultClazz, criterions);
+//        } finally {
+//            HibernateUtils.closeSession();
+//        }
+//    }
 
     @Override
     public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
@@ -239,6 +239,60 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
         } catch (Exception e) {
             HibernateUtils.rollbackTransaction();
             throw new HibernateException("Erro ao deletar: " + e.getLocalizedMessage());
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, Criterion... criterions) {
+        try {
+            return super.countByCriteria(entityClazz, resultClazz, criterions);
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, Criterion... criterions) {
+        try {
+            return super.findByCriteria(entityClazz, criterions);
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, Criterion... criterions) {
+        try {
+            return super.findByCriteria(entityClazz, firstResult, maxResults, criterions);
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, Criterion... criterions) {
+        try {
+            return super.findByCriteria(entityClazz, cacheable, firstResult, maxResults, criterions);
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, Criterion... criterions) {
+        try {
+            return super.findUniqueResultByCriteria(entityClazz, criterions);
+        } finally {
+            HibernateUtils.closeSession();
+        }
+    }
+
+    @Override
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, Criterion... criterions) {
+        try {
+            return super.findUniqueResultByCriteria(entityClazz, cacheable, criterions);
         } finally {
             HibernateUtils.closeSession();
         }
