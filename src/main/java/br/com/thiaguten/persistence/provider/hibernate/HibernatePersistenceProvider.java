@@ -192,7 +192,12 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      */
     @Override
     public <T extends Persistable<? extends Serializable>> T save(T entity) {
-        Serializable id = getSession().save(entity);
+        Serializable id = entity.getId();
+        if (id != null) {
+            getSession().update(entity);
+        } else {
+            id = getSession().save(entity);
+        }
         entity = (T) findById(entity.getClass(), id);
         return entity;
     }
@@ -205,8 +210,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      */
     @Override
     public <T extends Persistable<? extends Serializable>> T update(T entity) {
-        getSession().update(entity);
-        return null;
+        return save(entity);
     }
 
     /**
