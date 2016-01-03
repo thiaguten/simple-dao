@@ -29,38 +29,65 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.manual.hibernate.provider;
+package br.com.thiaguten.persistence.entity;
 
-import br.com.thiaguten.persistence.demo.UserDAO;
-import br.com.thiaguten.persistence.demo.manual.AbstractManualPersistenceProviderTest;
-import br.com.thiaguten.persistence.demo.manual.hibernate.dao.UserDAOHibernateImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
+import br.com.thiaguten.persistence.Persistable;
+
+import java.io.Serializable;
 
 /**
- * Hibernate persistence provider test
+ * Abstract Base Entity class that provide convenient methods and can be
+ * extended by Entities classes.
  *
- * @author Thiago Gutenberg
+ * @param <PK> primary key
  */
-public class HibernatePersistenceProviderTest extends AbstractManualPersistenceProviderTest {
+public abstract class BaseEntity<PK extends Serializable> implements Persistable<PK> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HibernatePersistenceProviderTest.class);
-
-    private static UserDAO userDAO;
-
-    @BeforeClass
-    public static void init() {
-        LOG.info("******************************************");
-        LOG.info("HIBERNATE - Transactions Management Manual");
-        LOG.info("******************************************");
-
-        userDAO = new UserDAOHibernateImpl();
+    /**
+     * Checks if this instance has a valid id.
+     *
+     * @return true if this instance has id, otherwise false.
+     */
+    public boolean hasID() {
+        return this.getId() != null;
     }
 
+    /**
+     * {@inheritDoc} Overridden to implements the method behavior.
+     */
     @Override
-    public UserDAO getUserDAO() {
-        return userDAO;
+    public String toString() {
+        return getClass().getSimpleName() + "{id=" + getId() + "}";
     }
 
+    /**
+     * {@inheritDoc} Overridden to implements the method behavior.
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    /**
+     * {@inheritDoc} Overridden to implements the method behavior.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BaseEntity other = (BaseEntity) obj;
+        if (getId() == null)
+            if (other.getId() != null)
+                return false;
+            else if (!getId().equals(other.getId()))
+                return false;
+        return true;
+    }
 }

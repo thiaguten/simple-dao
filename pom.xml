@@ -7,8 +7,10 @@
     <artifactId>simple-dao</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>simple-dao</name>
-    <description>DAO design pattern API that greatly facilitates the exchange and use of multiple persistence providers</description>
+    <name>Simple DAO</name>
+    <description>DAO design pattern API that greatly facilitates the exchange and use of multiple persistence
+        providers
+    </description>
 
     <url>https://github.com/thiaguten/simple-dao</url>
     <inceptionYear>2015</inceptionYear>
@@ -22,8 +24,8 @@
 
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <name>BSD 3-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
             <distribution>repo</distribution>
             <comments>A business-friendly OSS license</comments>
         </license>
@@ -40,7 +42,7 @@
     <distributionManagement>
         <repository>
             <id>internal.repo</id>
-            <name>Thiaguten Temporary Staging Repository</name>
+            <name>Internal Temporary Staging Repository</name>
             <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
@@ -117,8 +119,6 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -143,86 +143,55 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- hikaricp -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP-java6</artifactId>
             <version>${hikaricp.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- jta
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>${jta.version}</version>
-            <scope>test</scope>
-        </dependency>-->
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
-                    <inherited>true</inherited>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.4</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.6</version>
-                    <configuration>
-                        <excludes>
-                            <exclude>**/logback.xml</exclude>
-                            <exclude>**/log4j.properties</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <inherited>true</inherited>
                 <configuration>
-                    <show>public</show>
-                    <attach>true</attach>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
                 <executions>
                     <execution>
-                        <id>bundle-sources</id>
-                        <phase>package</phase>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/logback.xml</exclude>
+                        <exclude>**/log4j.properties</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.2</version>
                 <configuration>
-                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo
+                    </altDeploymentRepository>
                 </configuration>
             </plugin>
             <plugin>
@@ -251,6 +220,34 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <verbose>false</verbose>
+                    <addSvnKeyWords>true</addSvnKeyWords>
+                    <organizationName>Thiago Gutenberg Carvalho da Costa.</organizationName>
+                    <descriptionTemplate>${basedir}/src/license/header.ftl</descriptionTemplate>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <licenseName>bsd_3</licenseName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-file-header</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*.xml</exclude>
+                                <exclude>**/*.xsd</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -267,7 +264,6 @@
         <hsqldb.version>2.3.3</hsqldb.version>
         <hikaricp.version>2.3.12</hikaricp.version>
         <spring.version>4.2.4.RELEASE</spring.version>
-        <jta.version>1.1</jta.version>
     </properties>
 
 </project>
