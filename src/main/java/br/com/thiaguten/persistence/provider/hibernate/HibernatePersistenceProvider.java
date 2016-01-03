@@ -91,7 +91,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      */
     @Override
     public <T extends Persistable<? extends Serializable>> List<T> findAll(Class<T> entityClazz, int firstResult, int maxResults) {
-        return findByCriteria(entityClazz, firstResult, maxResults);
+        return findByCriteria(entityClazz, firstResult, maxResults, null);
     }
 
     /**
@@ -259,7 +259,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         return findByCriteria(entityClazz, -1, -1, criterions);
     }
 
@@ -273,7 +273,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, List<Criterion> criterions) {
         return findByCriteria(entityClazz, false, firstResult, maxResults, criterions);
     }
 
@@ -288,7 +288,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         if (criterions != null) {
             for (Criterion c : criterions) {
@@ -306,7 +306,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the entity
      */
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         return findUniqueResultByCriteria(entityClazz, false, criterions);
     }
 
@@ -319,7 +319,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the entity
      */
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         if (criterions != null) {
             for (Criterion c : criterions) {
@@ -339,7 +339,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <N>         number pojo
      * @return the count
      */
-    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         criteria.setProjection(Projections.rowCount());
         if (criterions != null) {

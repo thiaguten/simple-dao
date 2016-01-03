@@ -207,7 +207,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
         try {
             return super.countByCriteria(entityClazz, resultClazz, criterions);
         } finally {
@@ -216,7 +216,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         try {
             return super.findByCriteria(entityClazz, criterions);
         } finally {
@@ -225,7 +225,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, List<Criterion> criterions) {
         try {
             return super.findByCriteria(entityClazz, firstResult, maxResults, criterions);
         } finally {
@@ -234,7 +234,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, List<Criterion> criterions) {
         try {
             return super.findByCriteria(entityClazz, cacheable, firstResult, maxResults, criterions);
         } finally {
@@ -243,7 +243,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         try {
             return super.findUniqueResultByCriteria(entityClazz, criterions);
         } finally {
@@ -252,7 +252,7 @@ public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
     }
 
     @Override
-    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, Criterion... criterions) {
+    public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, List<Criterion> criterions) {
         try {
             return super.findUniqueResultByCriteria(entityClazz, cacheable, criterions);
         } finally {
