@@ -33,15 +33,13 @@ package br.com.thiaguten.persistence.demo.spring.hibernate.dao.service;
 
 import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.provider.hibernate.HibernatePersistenceProvider;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
 
 @Transactional(readOnly = true)
 //@Service("hibernatePersistenceService")

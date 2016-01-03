@@ -5,7 +5,7 @@
 
     <groupId>br.com.thiaguten.persistence</groupId>
     <artifactId>simple-dao</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Simple DAO</name>
     <description>DAO design pattern API that greatly facilitates the exchange and use of multiple persistence
@@ -152,7 +152,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -228,7 +227,7 @@
                     <verbose>false</verbose>
                     <addSvnKeyWords>true</addSvnKeyWords>
                     <organizationName>Thiago Gutenberg Carvalho da Costa.</organizationName>
-                    <descriptionTemplate>${basedir}/src/license/header.ftl</descriptionTemplate>
+                    <descriptionTemplate>${project.basedir}/src/license/header.ftl</descriptionTemplate>
                     <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
                     <licenseName>bsd_3</licenseName>
                 </configuration>

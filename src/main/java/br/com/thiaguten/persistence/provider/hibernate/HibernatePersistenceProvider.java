@@ -32,7 +32,6 @@
 package br.com.thiaguten.persistence.provider.hibernate;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.PersistenceProvider;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -49,7 +48,8 @@ import java.util.Map;
  *
  * @author Thiago Gutenberg
  */
-public abstract class HibernatePersistenceProvider implements PersistenceProvider {
+@SuppressWarnings("unchecked")
+public abstract class HibernatePersistenceProvider implements HibernateCriteriaPersistenceProvider {
 
     /**
      * Get session
@@ -259,6 +259,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
+    @Override
     public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         return findByCriteria(entityClazz, -1, -1, criterions);
     }
@@ -273,6 +274,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
+    @Override
     public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, int firstResult, int maxResults, List<Criterion> criterions) {
         return findByCriteria(entityClazz, false, firstResult, maxResults, criterions);
     }
@@ -288,6 +290,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the list of entities
      */
+    @Override
     public <T extends Persistable<? extends Serializable>> List<T> findByCriteria(Class<T> entityClazz, boolean cacheable, int firstResult, int maxResults, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         if (criterions != null) {
@@ -306,6 +309,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the entity
      */
+    @Override
     public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, List<Criterion> criterions) {
         return findUniqueResultByCriteria(entityClazz, false, criterions);
     }
@@ -319,6 +323,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <T>         entity
      * @return the entity
      */
+    @Override
     public <T extends Persistable<? extends Serializable>> T findUniqueResultByCriteria(Class<T> entityClazz, boolean cacheable, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         if (criterions != null) {
@@ -339,6 +344,7 @@ public abstract class HibernatePersistenceProvider implements PersistenceProvide
      * @param <N>         number pojo
      * @return the count
      */
+    @Override
     public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         criteria.setProjection(Projections.rowCount());

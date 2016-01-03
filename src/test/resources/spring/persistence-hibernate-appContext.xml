@@ -19,7 +19,8 @@
 
     <context:component-scan base-package="br.com.thiaguten.persistence.demo.spring.hibernate"/>
 
-    <bean id="hibernatePersistenceService" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernatePersistenceService"/>
+    <bean id="hibernatePersistenceService"
+          class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernatePersistenceService"/>
 
     <bean id="userHibernateDAO" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.UserDAOHibernateImpl">
         <property name="persistenceProvider" ref="hibernatePersistenceService"/>

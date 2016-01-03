@@ -18,13 +18,15 @@
     <context:annotation-config/>
 
     <context:component-scan base-package="br.com.thiaguten.persistence.demo.spring.hibernate"/>
-    
-    <bean id="hibernateJpaPersistenceService" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernateJpaPersistenceService"/>
 
-    <bean id="userHibernateJpaDAO" class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.UserDAOHibernateJpaImpl">
+    <bean id="hibernateJpaPersistenceService"
+          class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernateJpaPersistenceService"/>
+
+    <bean id="userHibernateJpaDAO"
+          class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.UserDAOHibernateJpaImpl">
         <property name="persistenceProvider" ref="hibernateJpaPersistenceService"/>
     </bean>
-    
+
     <!-- HikariCP configuration -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="poolName" value="SpringHikariCP"/>
@@ -69,7 +71,7 @@
     </bean>
 
     <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <constructor-arg ref="entityManagerFactory" />
+        <constructor-arg ref="entityManagerFactory"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="jpaTransactionManager"/>

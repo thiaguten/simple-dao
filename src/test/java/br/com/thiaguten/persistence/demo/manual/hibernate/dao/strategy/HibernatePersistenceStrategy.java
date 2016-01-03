@@ -49,10 +49,6 @@ import java.util.Map;
  */
 public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
 
-    static {
-        HibernateUtils.buildSessionFactory();
-    }
-
     @Override
     public Session getSession() {
         return HibernateUtils.getSession();

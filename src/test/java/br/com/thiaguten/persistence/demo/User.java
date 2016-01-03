@@ -53,7 +53,7 @@ public class User extends BaseEntity<Long> implements Versionable { // Versionab
     @Column(name = "NAME", nullable = false)
     private String name;
 
-//    @Transient
+    //    @Transient
     @Version
     @Column(name = "VERSION")
     private long version;

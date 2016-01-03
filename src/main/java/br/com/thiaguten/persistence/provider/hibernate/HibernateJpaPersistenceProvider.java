@@ -31,8 +31,9 @@
  */
 package br.com.thiaguten.persistence.provider.hibernate;
 
-import javax.persistence.EntityManager;
 import org.hibernate.Session;
+
+import javax.persistence.EntityManager;
 
 /**
  * Hibernate EntityManager implementation of the PersistenceProvider.
@@ -50,12 +51,12 @@ public abstract class HibernateJpaPersistenceProvider extends HibernatePersisten
 
     /**
      * Get session
-     * 
+     *
      * @return session
      */
     @Override
     public final Session getSession() {
         return (Session) getEntityManager().getDelegate();
     }
-    
+
 }

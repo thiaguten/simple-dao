@@ -39,6 +39,7 @@ import java.util.Map;
 
 /**
  * Define operation for a persistence provider implementation.
+ *
  * @author Thiago Gutenberg
  */
 public interface PersistenceProvider {

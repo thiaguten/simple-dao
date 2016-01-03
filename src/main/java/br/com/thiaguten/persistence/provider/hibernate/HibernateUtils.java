@@ -37,11 +37,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-//import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+//import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  * Utility class to create a sesson factory and a session.
@@ -84,6 +84,7 @@ public final class HibernateUtils {
         return sessionFactory;
     }
 
+    @SuppressWarnings("unchecked")
     private static Map toMap(Properties properties) {
         Map map = new HashMap();
         for (String name : properties.stringPropertyNames()) {
@@ -98,6 +99,17 @@ public final class HibernateUtils {
      * @return session
      */
     public static Session getSession() {
+        return getSession(null);
+    }
+
+    public static Session getSession(final String sessionFactoryHibernateResource) {
+        if (sessionFactory == null || sessionFactory.isClosed()) {
+            if (sessionFactoryHibernateResource != null && !sessionFactoryHibernateResource.trim().isEmpty()) {
+                sessionFactory = buildSessionFactory(sessionFactoryHibernateResource);
+            } else {
+                sessionFactory = buildSessionFactory();
+            }
+        }
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             if (!session.isOpen()) {
                 session = sessionFactory.getCurrentSession();

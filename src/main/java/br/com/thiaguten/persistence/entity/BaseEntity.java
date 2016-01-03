@@ -43,6 +43,8 @@ import java.io.Serializable;
  */
 public abstract class BaseEntity<PK extends Serializable> implements Persistable<PK> {
 
+    private static final long serialVersionUID = -3489685468911329523L;
+
     /**
      * Checks if this instance has a valid id.
      *

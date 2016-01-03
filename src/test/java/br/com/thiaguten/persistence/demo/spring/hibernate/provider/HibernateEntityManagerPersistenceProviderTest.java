@@ -41,7 +41,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.BeforeClass;
 
 /**
- *
  * @author Thiago Gutenberg
  */
 @ContextConfiguration(locations = {"classpath:spring/persistence-hibernate-entitymanager-appContext.xml"})
