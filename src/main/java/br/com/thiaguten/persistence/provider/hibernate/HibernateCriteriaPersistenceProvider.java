@@ -34,6 +34,7 @@ package br.com.thiaguten.persistence.provider.hibernate;
 import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.provider.PersistenceProvider;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.transform.ResultTransformer;
 
 import java.io.Serializable;
 import java.util.List;
@@ -113,4 +114,16 @@ public interface HibernateCriteriaPersistenceProvider extends PersistenceProvide
      */
     <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions);
 
+    /**
+     * Count by criteria
+     *
+     * @param entityClazz the entity class
+     * @param resultClazz the result class
+     * @param resultTransformer strategy for transforming query results
+     * @param criterions  the criterions
+     * @param <T>         entity
+     * @param <N>         number pojo
+     * @return the count
+     */
+    <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, ResultTransformer resultTransformer, List<Criterion> criterions);
 }

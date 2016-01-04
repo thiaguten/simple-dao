@@ -5,7 +5,7 @@
 
     <groupId>br.com.thiaguten.persistence</groupId>
     <artifactId>simple-dao</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>Simple DAO</name>
     <description>DAO design pattern API that greatly facilitates the exchange and use of multiple persistence providers.</description>

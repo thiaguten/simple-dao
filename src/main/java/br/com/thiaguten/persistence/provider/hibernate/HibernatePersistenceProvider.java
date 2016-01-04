@@ -38,6 +38,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
+import org.hibernate.transform.ResultTransformer;
 
 import java.io.Serializable;
 import java.util.List;
@@ -210,7 +211,7 @@ public abstract class HibernatePersistenceProvider implements HibernateCriteriaP
     public <T extends Persistable<? extends Serializable>> T save(T entity) {
         Serializable id = entity.getId();
         if (id != null) {
-            getSession().update(entity);
+            getSession().saveOrUpdate(entity);
         } else {
             id = getSession().save(entity);
         }
@@ -346,6 +347,22 @@ public abstract class HibernatePersistenceProvider implements HibernateCriteriaP
      */
     @Override
     public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, List<Criterion> criterions) {
+        return countByCriteria(entityClazz, resultClazz, Criteria.DISTINCT_ROOT_ENTITY, criterions);
+    }
+
+    /**
+     * Count by criteria
+     *
+     * @param entityClazz the entity class
+     * @param resultClazz the result class
+     * @param resultTransformer strategy for transforming query results
+     * @param criterions  the criterions
+     * @param <T>         entity
+     * @param <N>         number pojo
+     * @return the count
+     */
+    @Override
+    public <T extends Persistable<? extends Serializable>, N extends Number> N countByCriteria(Class<T> entityClazz, Class<N> resultClazz, ResultTransformer resultTransformer, List<Criterion> criterions) {
         Criteria criteria = getSession().createCriteria(entityClazz);
         criteria.setProjection(Projections.rowCount());
         if (criterions != null) {
@@ -353,7 +370,7 @@ public abstract class HibernatePersistenceProvider implements HibernateCriteriaP
                 criteria.add(c);
             }
         }
-        return (N) criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).uniqueResult();
+        return (N) criteria.setResultTransformer(resultTransformer).uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
