@@ -102,6 +102,12 @@ public final class HibernateUtils {
         return getSession(null);
     }
 
+    /**
+     * Get session
+     *
+     * @param sessionFactoryHibernateResource session factory resource
+     * @return session
+     */
     public static Session getSession(final String sessionFactoryHibernateResource) {
         if (sessionFactory == null || sessionFactory.isClosed()) {
             if (sessionFactoryHibernateResource != null && !sessionFactoryHibernateResource.trim().isEmpty()) {

@@ -39,15 +39,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-@Repository("userJpaDAO")
 public class UserDAOJpaImpl extends GenericBaseDAO<User, Long> implements UserDAO {
 
-    @Autowired
-    @Qualifier("jpaPersistenceService")
     private PersistenceProvider persistenceProvider;
 
     @Override
     public PersistenceProvider getPersistenceProvider() {
         return persistenceProvider;
+    }
+
+    public void setPersistenceProvider(PersistenceProvider persistenceProvider) {
+        this.persistenceProvider = persistenceProvider;
     }
 }

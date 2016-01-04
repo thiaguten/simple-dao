@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.manual.hibernate.dao.strategy;
+package br.com.thiaguten.persistence.demo.manual.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.provider.hibernate.HibernatePersistenceProvider;
@@ -47,7 +47,7 @@ import java.util.Map;
  *
  * @author Thiago Gutenberg
  */
-public class HibernatePersistenceStrategy extends HibernatePersistenceProvider {
+public class HibernatePersistenceProviderManualImpl extends HibernatePersistenceProvider {
 
     @Override
     public Session getSession() {

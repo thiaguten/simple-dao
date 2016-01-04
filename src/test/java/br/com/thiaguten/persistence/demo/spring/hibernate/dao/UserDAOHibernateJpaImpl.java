@@ -38,14 +38,8 @@ import br.com.thiaguten.persistence.provider.PersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-/**
- * @author Thiago Gutenberg
- */
-//@Repository("userHibernateJpaDAO")
 public class UserDAOHibernateJpaImpl extends GenericBaseDAO<User, Long> implements UserDAO {
 
-    @Autowired
-    @Qualifier("hibernateJpaPersistenceService")
     private PersistenceProvider persistenceProvider;
 
     @Override

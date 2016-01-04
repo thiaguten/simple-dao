@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.manual.jpa.dao.strategy;
+package br.com.thiaguten.persistence.demo.manual.jpa.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.provider.jpa.JPAPersistenceProvider;
@@ -46,7 +46,7 @@ import java.util.Map;
  *
  * @author Thiago Gutenberg
  */
-public class JPAPersistenceStrategy extends JPAPersistenceProvider {
+public class JPAPersistenceProviderManualImpl extends JPAPersistenceProvider {
 
     static {
         JPAUtils.createEntityManagerFactory("jpaPU");

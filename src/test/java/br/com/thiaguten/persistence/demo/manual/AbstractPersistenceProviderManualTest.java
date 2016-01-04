@@ -29,19 +29,23 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.spring;
+package br.com.thiaguten.persistence.demo.manual;
 
 import br.com.thiaguten.persistence.demo.User;
 import br.com.thiaguten.persistence.demo.UserDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public abstract class AbstractSpringPersistenceProviderTest extends AbstractTransactionalTestNGSpringContextTests {
+/**
+ * Abstract test class
+ *
+ * @author Thiago Gutenberg
+ */
+public abstract class AbstractPersistenceProviderManualTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractSpringPersistenceProviderTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractPersistenceProviderManualTest.class);
 
     protected static final String[] INSERT_PARAMS = {"THIAGO", "DAYANA", "VALENTINA"};
     protected static final String[] UPDATE_PARAMS = {"THIAGO2", "DAYANA2", "VALENTINA2"};

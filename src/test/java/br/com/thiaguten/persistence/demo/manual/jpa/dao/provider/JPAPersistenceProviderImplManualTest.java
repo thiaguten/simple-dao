@@ -29,30 +29,31 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.manual.jpa.provider;
+package br.com.thiaguten.persistence.demo.manual.jpa.dao.provider;
 
 import br.com.thiaguten.persistence.demo.UserDAO;
-import br.com.thiaguten.persistence.demo.manual.AbstractManualPersistenceProviderTest;
+import br.com.thiaguten.persistence.demo.manual.AbstractPersistenceProviderManualTest;
 import br.com.thiaguten.persistence.demo.manual.jpa.dao.UserDAOJpaImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * JPA persistence provider test
  *
  * @author Thiago Gutenberg
  */
-public class JPAPersistenceProviderTest extends AbstractManualPersistenceProviderTest {
+public class JPAPersistenceProviderImplManualTest extends AbstractPersistenceProviderManualTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JPAPersistenceProviderTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JPAPersistenceProviderImplManualTest.class);
 
     private static UserDAO userDAO;
 
     @BeforeClass
     public static void init() {
         LOG.info("************************************");
-        LOG.info("JPA - Transactions Management Manual");
+        LOG.info("JPA MANUAL - Transactions Management");
         LOG.info("************************************");
 
         userDAO = new UserDAOJpaImpl();

@@ -45,7 +45,6 @@ public final class JPAUtils {
 
     private static EntityManagerFactory emf;
 
-    @PersistenceContext
     private static EntityManager em;
 
     private JPAUtils() {
@@ -104,7 +103,7 @@ public final class JPAUtils {
      * Begin transaction
      */
     public static void beginTransaction() {
-        if (!getTransaction().isActive()) {
+        if (!isTransactionActive()) {
             getTransaction().begin();
         }
     }
@@ -113,7 +112,7 @@ public final class JPAUtils {
      * Commit transaction
      */
     public static void commitTransaction() {
-        if (getTransaction().isActive()) {
+        if (isTransactionActive()) {
             getTransaction().commit();
         }
     }
@@ -122,9 +121,18 @@ public final class JPAUtils {
      * Rollback transaction
      */
     public static void rollbackTransaction() {
-        if (getTransaction().isActive()) {
+        if (isTransactionActive()) {
             getTransaction().rollback();
         }
+    }
+
+    /**
+     * Checks if a transaction is active
+     *
+     * @return true if the transaction is active, otherwise false
+     */
+    public static boolean isTransactionActive() {
+        return getTransaction().isActive();
     }
 
     /**

@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.spring.jpa.dao.service;
+package br.com.thiaguten.persistence.demo.spring.jpa.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.provider.jpa.JPAPersistenceProvider;
@@ -44,8 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 @Transactional(readOnly = true)
-@Service("jpaPersistenceService")
-public class JPAPersistenceService extends JPAPersistenceProvider {
+public class JPAPersistenceProviderSpringImpl extends JPAPersistenceProvider {
 
     @PersistenceContext
     private EntityManager entityManager;

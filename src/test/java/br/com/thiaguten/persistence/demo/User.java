@@ -36,11 +36,6 @@ import br.com.thiaguten.persistence.entity.BaseEntity;
 
 import javax.persistence.*;
 
-/**
- * User entity
- *
- * @author Thiago Gutenberg
- */
 @Entity
 @Table(name = "USER")
 public class User extends BaseEntity<Long> implements Versionable { // Versionable is optional

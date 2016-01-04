@@ -29,10 +29,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.spring.jpa.provider;
+package br.com.thiaguten.persistence.demo.spring.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.demo.UserDAO;
-import br.com.thiaguten.persistence.demo.spring.AbstractSpringPersistenceProviderTest;
+import br.com.thiaguten.persistence.demo.spring.AbstractPersistenceProviderSpringTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,20 +40,23 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.BeforeClass;
 
-@ContextConfiguration(locations = {"classpath:spring/persistence-jpa-appContext.xml"})
-public class JPAPersistenceProviderTest extends AbstractSpringPersistenceProviderTest {
+/**
+ * @author Thiago Gutenberg
+ */
+@ContextConfiguration(locations = {"classpath:spring/persistence-hibernate-entitymanager-appContext.xml"})
+public class HibernateJpaPersistenceProviderImplSpringTest extends AbstractPersistenceProviderSpringTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JPAPersistenceProviderTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HibernateJpaPersistenceProviderImplSpringTest.class);
 
     @Autowired
-    @Qualifier("userJpaDAO")
+    @Qualifier("userHibernateJpaDAO")
     private UserDAO userDAO;
 
     @BeforeClass
     public static void init() {
-        LOG.info("************************************");
-        LOG.info("JPA - Transactions Management Spring");
-        LOG.info("************************************");
+        LOG.info("**********************************************");
+        LOG.info("HIBERNATE JPA SPRING - Transactions Management");
+        LOG.info("**********************************************");
     }
 
     @Override

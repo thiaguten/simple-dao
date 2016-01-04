@@ -29,10 +29,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.demo.manual.hibernate.provider;
+package br.com.thiaguten.persistence.demo.manual.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.demo.UserDAO;
-import br.com.thiaguten.persistence.demo.manual.AbstractManualPersistenceProviderTest;
+import br.com.thiaguten.persistence.demo.manual.AbstractPersistenceProviderManualTest;
 import br.com.thiaguten.persistence.demo.manual.hibernate.dao.UserDAOHibernateImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,17 +43,17 @@ import org.testng.annotations.BeforeClass;
  *
  * @author Thiago Gutenberg
  */
-public class HibernatePersistenceProviderTest extends AbstractManualPersistenceProviderTest {
+public class HibernatePersistenceProviderImplManualTest extends AbstractPersistenceProviderManualTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HibernatePersistenceProviderTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HibernatePersistenceProviderImplManualTest.class);
 
     private static UserDAO userDAO;
 
     @BeforeClass
     public static void init() {
-        LOG.info("******************************************");
-        LOG.info("HIBERNATE - Transactions Management Manual");
-        LOG.info("******************************************");
+        LOG.info("***********************************************");
+        LOG.info("HIBERNATE CORE MANUAL - Transactions Management");
+        LOG.info("***********************************************");
 
         userDAO = new UserDAOHibernateImpl();
     }

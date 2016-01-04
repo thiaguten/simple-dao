@@ -33,11 +33,6 @@ package br.com.thiaguten.persistence.demo;
 
 import br.com.thiaguten.persistence.dao.BaseDAO;
 
-/**
- * User DAO interface
- *
- * @author Thiago Gutenberg
- */
 public interface UserDAO extends BaseDAO<User, Long> {
 
 }

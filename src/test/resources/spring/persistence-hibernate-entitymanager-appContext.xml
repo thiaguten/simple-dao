@@ -20,7 +20,7 @@
     <context:component-scan base-package="br.com.thiaguten.persistence.demo.spring.hibernate"/>
 
     <bean id="hibernateJpaPersistenceService"
-          class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.service.HibernateJpaPersistenceService"/>
+          class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.provider.HibernateJpaPersistenceProviderSpringImpl"/>
 
     <bean id="userHibernateJpaDAO"
           class="br.com.thiaguten.persistence.demo.spring.hibernate.dao.UserDAOHibernateJpaImpl">
@@ -52,8 +52,9 @@
     <!-- Hibernate entity manager configuration -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="persistenceUnitName" value="jpaPU"/>-->
+        <!--<property name="persistenceUnitName" value="hibernateJpaPU"/>-->
         <property name="packagesToScan" value="br.com.thiaguten.persistence.demo"/>
+        <!--<property name="loadTimeWeaver" ref="loadTimeWeaver"/>-->
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
         <property name="jpaProperties">
             <props>

@@ -19,6 +19,13 @@
 
     <context:component-scan base-package="br.com.thiaguten.persistence.demo.spring.jpa"/>
 
+    <bean id="jpaPersistenceService"
+          class="br.com.thiaguten.persistence.demo.spring.jpa.dao.provider.JPAPersistenceProviderSpringImpl"/>
+
+    <bean id="userJpaDAO" class="br.com.thiaguten.persistence.demo.spring.jpa.dao.UserDAOJpaImpl">
+        <property name="persistenceProvider" ref="jpaPersistenceService"/>
+    </bean>
+
     <!-- HikariCP configuration -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="poolName" value="SpringHikariCP"/>
@@ -44,7 +51,8 @@
     <!-- JPA EntityManagerFactory configuration -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceUnitName" value="jpaPU"/>
+        <!--<property name="persistenceUnitName" value="jpaPU"/>-->
+        <property name="packagesToScan" value="br.com.thiaguten.persistence.demo"/>
         <!--<property name="loadTimeWeaver" ref="loadTimeWeaver"/>-->
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
         <property name="jpaProperties">
