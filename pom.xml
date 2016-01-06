@@ -13,6 +13,11 @@
     <url>https://github.com/thiaguten/simple-dao</url>
     <inceptionYear>2015</inceptionYear>
 
+    <organization>
+        <name>www.thiaguten.com.br</name>
+        <url>https://github.com/thiaguten</url>
+    </organization>
+
     <licenses>
         <license>
             <name>BSD 3-Clause License</name>
