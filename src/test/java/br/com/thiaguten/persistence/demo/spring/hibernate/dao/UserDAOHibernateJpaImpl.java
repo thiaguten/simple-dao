@@ -34,9 +34,7 @@ package br.com.thiaguten.persistence.demo.spring.hibernate.dao;
 import br.com.thiaguten.persistence.dao.GenericBaseDAO;
 import br.com.thiaguten.persistence.demo.User;
 import br.com.thiaguten.persistence.demo.UserDAO;
-import br.com.thiaguten.persistence.provider.PersistenceProvider;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
 public class UserDAOHibernateJpaImpl extends GenericBaseDAO<User, Long> implements UserDAO {
 

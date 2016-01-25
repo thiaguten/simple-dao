@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.provider.jpa;
+package br.com.thiaguten.persistence.spi.provider.jpa;
 
 import br.com.thiaguten.persistence.Persistable;
 

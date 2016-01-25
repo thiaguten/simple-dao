@@ -32,8 +32,8 @@
 package br.com.thiaguten.persistence.demo.manual.jpa.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.jpa.JPAPersistenceProvider;
-import br.com.thiaguten.persistence.provider.jpa.JPAUtils;
+import br.com.thiaguten.persistence.spi.provider.jpa.JPAPersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.jpa.JPAUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;

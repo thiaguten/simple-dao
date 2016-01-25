@@ -32,7 +32,7 @@
 package br.com.thiaguten.persistence.demo.spring.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.hibernate.HibernateJpaPersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernateJpaPersistenceProvider;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.transaction.annotation.Propagation;

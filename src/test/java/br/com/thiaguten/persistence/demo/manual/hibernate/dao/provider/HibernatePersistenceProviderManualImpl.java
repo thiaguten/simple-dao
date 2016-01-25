@@ -32,8 +32,8 @@
 package br.com.thiaguten.persistence.demo.manual.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.hibernate.HibernatePersistenceProvider;
-import br.com.thiaguten.persistence.provider.hibernate.HibernateUtils;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernatePersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernateUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;

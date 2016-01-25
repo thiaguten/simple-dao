@@ -32,7 +32,7 @@
 package br.com.thiaguten.persistence.demo.spring.hibernate.dao.provider;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.hibernate.HibernatePersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernatePersistenceProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;

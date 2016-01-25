@@ -35,7 +35,7 @@ import br.com.thiaguten.persistence.dao.GenericBaseDAO;
 import br.com.thiaguten.persistence.demo.User;
 import br.com.thiaguten.persistence.demo.UserDAO;
 import br.com.thiaguten.persistence.demo.manual.jpa.dao.provider.JPAPersistenceProviderManualImpl;
-import br.com.thiaguten.persistence.provider.PersistenceProvider;
+import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
 /**
  * User DAO JPA

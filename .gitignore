@@ -27,6 +27,8 @@ nb-configuration.xml
 # Maven
 log/
 target/
+pom.xml.releaseBackup
+release.properties
 
 # Operating System
 .DS_Store

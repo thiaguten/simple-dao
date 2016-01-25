@@ -29,7 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.provider.hibernate;
+package br.com.thiaguten.persistence.spi.provider.hibernate;
 
 import br.com.thiaguten.persistence.Persistable;
 import org.hibernate.Criteria;

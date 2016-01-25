@@ -32,7 +32,7 @@
 package br.com.thiaguten.persistence.dao;
 
 import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.provider.PersistenceProvider;
+import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
 import java.io.Serializable;
 import java.util.List;
