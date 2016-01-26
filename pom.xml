@@ -39,15 +39,6 @@
         <tag>HEAD</tag>
     </scm>
 
-    <!-- http://www.slf4j.org/faq.html#excludingJCL -->
-    <repositories>
-        <repository>
-            <id>commons-logging-empty</id>
-            <name>empty artifacts for commons-logging and log4j</name>
-            <url>http://version99.qos.ch/</url>
-        </repository>
-    </repositories>
-
     <build>
         <plugins>
             <plugin>
