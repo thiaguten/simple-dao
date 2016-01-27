@@ -15,7 +15,8 @@ Requires JDK 1.6 or higher
 ## Latest release
 
 SimpleDAO is available from [Maven Central](http://search.maven.org/).
-SimpleDAO Javadoc is available [here](http://thiaguten.github.io/simple-dao)
+
+SimpleDAO Javadoc is available [here](http://thiaguten.github.io/simple-dao/apidocs/).
 
 To add a dependency using Maven, use the following:
 
@@ -34,5 +35,7 @@ dependencies {
     compile 'br.com.thiaguten.persistence:simple-dao:1.0.3'
 }
 ```
+
+For more informations: http://thiaguten.github.io/simple-dao/
 
 
