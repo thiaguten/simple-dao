@@ -1,0 +1,203 @@
+package br.com.thiaguten.persistence.ri;
+
+import br.com.thiaguten.persistence.Persistable;
+import br.com.thiaguten.persistence.Versionable;
+import br.com.thiaguten.persistence.dao.BaseDAO;
+import br.com.thiaguten.persistence.dao.GenericBaseDAO;
+import br.com.thiaguten.persistence.entity.BaseEntity;
+import br.com.thiaguten.persistence.spi.PersistenceProvider;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Reference implementation.
+ */
+public class Example {
+
+//    public static void main(String[] args) {
+//
+//        final User user = new User("Thiago Gutenberg");
+//        final PersistenceProvider persistenceProvider = new MyPersistenceProvider();
+//
+//        System.out.println("Concrete class implementation approach:\n");
+//        UserDAO userDAO = new UserDAOImpl(persistenceProvider);
+//        userDAO.customOperation(user);
+//        userDAO.save(user);
+//        userDAO.update(user);
+//        userDAO.delete(user);
+//
+//        System.out.println("\nInner class implementation approach:\n");
+//        BaseDAO<User, Long> dao = new GenericBaseDAO<User, Long>() {
+//
+//            @Override
+//            public PersistenceProvider getPersistenceProvider() {
+//                return persistenceProvider;
+//            }
+//
+//            public BaseDAO<User, Long> customOperation(User user) {
+//                System.out.println("Performing custom operation for " + user);
+//                return this;
+//            }
+//
+//        }.customOperation(user);
+//        dao.save(user);
+//        dao.update(user);
+//        dao.delete(user);
+//
+//    }
+//
+//    /**
+//     * Persistable class.
+//     *
+//     * @author Thiago Gutenberg Carvalho da Costa
+//     */
+//    private static final class User extends BaseEntity<Long> {
+//
+//        private Long id;
+//        private String name;
+//
+//        public User(String name) {
+//            this.name = name;
+//        }
+//
+//        // for clone proposes
+//        public User(User user) {
+//            this.id = user.getId();
+//            this.name = user.getName();
+//        }
+//
+//        @Override
+//        public Long getId() {
+//            return id;
+//        }
+//
+//        public void setId(Long id) {
+//            this.id = id;
+//        }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public void setName(String name) {
+//            this.name = name;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return "User{ name=" + name + " }";
+//        }
+//    }
+//
+//    /**
+//     * Optional User DAO interface to declare custom operations.
+//     *
+//     * @author Thiago Gutenberg Carvalho da Costa
+//     */
+//    private interface UserDAO extends BaseDAO<User, Long> {
+//
+//        void customOperation(User user);
+//    }
+//
+//    /**
+//     * User DAO Implementation.
+//     *
+//     * @author Thiago Gutenberg Carvalho da Costa
+//     */
+//    private static final class UserDAOImpl extends GenericBaseDAO<User, Long> implements UserDAO {
+//
+//        private final PersistenceProvider persistenceProvider;
+//
+//        public UserDAOImpl(PersistenceProvider persistenceProvider) {
+//            this.persistenceProvider = persistenceProvider;
+//        }
+//
+//        @Override
+//        public PersistenceProvider getPersistenceProvider() {
+//            return persistenceProvider;
+//        }
+//
+//        @Override
+//        public void customOperation(User user) {
+//            System.out.println("Performing user custom operation " + user);
+//        }
+//    }
+//
+//    /**
+//     * My persistence provider implementation.
+//     *
+//     * @author Thiago Gutenberg Carvalho da Costa
+//     */
+//    private static final class MyPersistenceProvider implements PersistenceProvider {
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> List<T> findAll(Class<T> entityClazz) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> List<T> findAll(Class<T> entityClazz, int firstResult, int maxResults) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> List<T> findByNamedQuery(Class<T> entityClazz, String queryName, Object... params) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> List<T> findByNamedQueryAndNamedParams(Class<T> entityClazz, String queryName, Map<String, ?> params) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> List<T> findByQueryAndNamedParams(Class<T> entityClazz, String query, Map<String, ?> params) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> long countAll(Class<T> entityClazz) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Number> T countByNamedQueryAndNamedParams(Class<T> resultClazz, String queryName, Map<String, ?> params) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Number> T countByQueryAndNamedParams(Class<T> resultClazz, String query, Map<String, ?> params) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> T save(T entity) {
+//            System.out.println("Saving " + entity);
+//            return entity;
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> T update(T entity) {
+//            System.out.println("Updating " + entity);
+//            return entity;
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>> void delete(Class<T> entityClazz, T entity) {
+//            System.out.println("Deleting " + entity);
+//        }
+//
+//        @Override
+//        public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK pk) {
+//            throw new UnsupportedOperationException("Operation not supported");
+//        }
+//    }
+
+}

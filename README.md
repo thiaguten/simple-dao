@@ -3,7 +3,27 @@
 [![Build Status](https://travis-ci.org/thiaguten/simple-dao.svg)](https://travis-ci.org/thiaguten/simple-dao)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/br.com.thiaguten.persistence/simple-dao/badge.svg)](https://maven-badges.herokuapp.com/maven-central/br.com.thiaguten.persistence/simple-dao)
 
-Core DAO API that greatly facilitates the usage of multiple persistence providers. E.g: (JPA, Hibernate).
+Core DAO API that greatly facilitates the usage of multiple persistence providers. E.g: (JPA, Hibernate, Etc...).
+
+SimpleDAO Core Reference Implementation:
+
+```java
+User user = new User("Thiago Gutenberg");
+
+BaseDAO<User, Long> dao = new GenericBaseDAO<User, Long>() {
+    @Override
+    public PersistenceProvider getPersistenceProvider() {
+        return new YourPersistenceProviderImpl();
+    }
+};
+
+dao.save(user);
+dao.update(user);
+dao.delete(user);
+...
+```
+
+More detail example can be found in test package.
 
 SimpleDAO SPI Implementations:
 
