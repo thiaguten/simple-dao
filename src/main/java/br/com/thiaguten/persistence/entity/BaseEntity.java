@@ -31,7 +31,7 @@
  */
 package br.com.thiaguten.persistence.entity;
 
-import br.com.thiaguten.persistence.Persistable;
+import br.com.thiaguten.persistence.core.Persistable;
 
 import java.io.Serializable;
 
@@ -39,9 +39,10 @@ import java.io.Serializable;
  * Abstract Base Entity class that provide convenient methods and can be
  * extended by Entities classes.
  *
- * @param <PK> primary key
+ * @param <ID> the type of the identifier
+ * @author Thiago Gutenberg Carvalho da Costa
  */
-public abstract class BaseEntity<PK extends Serializable> implements Persistable<PK> {
+public abstract class BaseEntity<ID extends Serializable> implements Persistable<ID> {
 
     private static final long serialVersionUID = -3489685468911329523L;
 
@@ -55,7 +56,7 @@ public abstract class BaseEntity<PK extends Serializable> implements Persistable
     }
 
     /**
-     * {@inheritDoc} Overridden to implements the method behavior.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -63,7 +64,7 @@ public abstract class BaseEntity<PK extends Serializable> implements Persistable
     }
 
     /**
-     * {@inheritDoc} Overridden to implements the method behavior.
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -74,7 +75,7 @@ public abstract class BaseEntity<PK extends Serializable> implements Persistable
     }
 
     /**
-     * {@inheritDoc} Overridden to implements the method behavior.
+     * {@inheritDoc}.
      */
     @Override
     public boolean equals(Object obj) {

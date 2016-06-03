@@ -31,9 +31,9 @@
  */
 package br.com.thiaguten.persistence.ri;
 
-import br.com.thiaguten.persistence.Persistable;
-import br.com.thiaguten.persistence.dao.BaseDAO;
-import br.com.thiaguten.persistence.dao.GenericBaseDAO;
+import br.com.thiaguten.persistence.core.BasePersistence;
+import br.com.thiaguten.persistence.core.GenericBasePersistence;
+import br.com.thiaguten.persistence.core.Persistable;
 import br.com.thiaguten.persistence.entity.BaseEntity;
 import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
@@ -54,55 +54,62 @@ public class Example {
         System.out.println("Concrete class implementation approach:\n");
         final UserDAO userDAO = new UserDAOImpl(myPersistenceProvider);
 
-        userDAO.save(user);
+        userDAO.create(user);
         userDAO.update(user);
         userDAO.delete(user);
         userDAO.customOperation(user);
 
         System.out.println("\nInner class implementation approach:\n");
-        final BaseDAO<User, Long> baseDAO = new GenericBaseDAO<User, Long>() {
+        final BasePersistence<Long, User> basePersistence = new GenericBasePersistence<Long, User>() {
             @Override
             public PersistenceProvider getPersistenceProvider() {
                 return myPersistenceProvider;
             }
         };
 
-        baseDAO.save(user);
-        baseDAO.update(user);
-        baseDAO.delete(user);
+        basePersistence.create(user);
+        basePersistence.update(user);
+        basePersistence.delete(user);
 
 //        System.out.println("\nJava 8 function class with concrete class implementation approach:\n");
-//        BaseDAOFuntion<User, UserDAO> concreteBaseDAOFuntion = (User u) -> userDAO;
+//        BasePersistenceFunction<User, UserDAO> concreteBasePersistenceFunction = (User u) -> userDAO;
 //
-//        UserDAO concreteUserDAO = daoFor(user, concreteBaseDAOFuntion);
+//        UserDAO concreteUserDAO = createBasePersistence(user, concreteBasePersistenceFunction);
 //
-//        concreteUserDAO.save(user);
+//        concreteUserDAO.create(user);
 //        concreteUserDAO.update(user);
 //        concreteUserDAO.delete(user);
 //        concreteUserDAO.customOperation(user);
 //
 //        System.out.println("\nJava 8 function class with inner class implementation approach:\n");
-//        BaseDAOFuntion<User, BaseDAO<User, Long>> baseDAOFuntion = (User u) -> baseDAO;
+//        BasePersistenceFunction<User, BasePersistence<Long, User>> basePersistenceFunction = (User u) -> basePersistence;
 //
-//        BaseDAO<User, Long> genericBaseDAO = daoFor(user, baseDAOFuntion);
+//        BasePersistence<Long, User> genericBasePersistence = createBasePersistence(user, basePersistenceFunction);
 //
-//        genericBaseDAO.save(user);
-//        genericBaseDAO.update(user);
-//        genericBaseDAO.delete(user);
-
+//        genericBasePersistence.create(user);
+//        genericBasePersistence.update(user);
+//        genericBasePersistence.delete(user);
+//
+//        System.out.println("\nJava 8 function class with inner class implementation 2 approach:\n");
+//
+//        genericBasePersistence = createBasePersistence(user, (Function<User, BasePersistence<Long, User>>) (User u) -> basePersistence);
+//
+//        genericBasePersistence.create(user);
+//        genericBasePersistence.update(user);
+//        genericBasePersistence.delete(user);
     }
 
 //    @FunctionalInterface
-//    interface BaseDAOFuntion<T extends Persistable<? extends Serializable>, R extends BaseDAO<T, ? extends Serializable>> {
+//    public interface BasePersistenceFunction<T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> {
 //        R applyToBaseDAO(T t);
 //    }
 //
-//    private static final <T extends Persistable<? extends Serializable>, R extends BaseDAO<T, ? extends Serializable>> R daoFor(T t, Function<T, R> f) {
-//        return f.apply(t);
+//    public static <T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> R createBasePersistence(T t, BasePersistenceFunction<T, R> f) {
+//        return f.applyToBaseDAO(t);
 //    }
 //
-//    private static final <T extends Persistable<? extends Serializable>, R extends BaseDAO<T, ? extends Serializable>> R daoFor(T t, BaseDAOFuntion<T, R> f) {
-//        return f.applyToBaseDAO(t);
+//    public static <T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> R createBasePersistence(T t, Function<T, R> f) {
+//        return f.apply(t);
 //    }
 
     /**
@@ -153,7 +160,7 @@ public class Example {
      *
      * @author Thiago Gutenberg Carvalho da Costa
      */
-    private interface UserDAO extends BaseDAO<User, Long> {
+    public interface UserDAO extends BasePersistence<Long, User> {
 
         void customOperation(User user);
     }
@@ -163,7 +170,7 @@ public class Example {
      *
      * @author Thiago Gutenberg Carvalho da Costa
      */
-    private static final class UserDAOImpl extends GenericBaseDAO<User, Long> implements UserDAO {
+    private static final class UserDAOImpl extends GenericBasePersistence<Long, User> implements UserDAO {
 
         private final PersistenceProvider persistenceProvider;
 
@@ -190,7 +197,7 @@ public class Example {
     private static final class MyPersistenceProvider implements PersistenceProvider {
 
         @Override
-        public <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(Class<T> entityClazz, PK pk) {
+        public <ID extends Serializable, T extends Persistable<ID>> T findById(Class<T> entityClazz, ID id) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
@@ -252,9 +259,10 @@ public class Example {
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(Class<T> entityClazz, PK pk) {
+        public <ID extends Serializable, T extends Persistable<ID>> void deleteById(Class<T> entityClazz, ID id) {
             throw new UnsupportedOperationException("Operation not supported");
         }
+
     }
 
 }

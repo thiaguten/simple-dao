@@ -31,7 +31,7 @@
  */
 package br.com.thiaguten.persistence.spi;
 
-import br.com.thiaguten.persistence.Persistable;
+import br.com.thiaguten.persistence.core.Persistable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -40,36 +40,37 @@ import java.util.Map;
 /**
  * Define operation for a persistence provider implementation.
  *
- * @author Thiago Gutenberg
+ * @author Thiago Gutenberg Carvalho da Costa
  */
 public interface PersistenceProvider {
 
     /**
-     * Find an entity by its primary key.
+     * Find an entity by its identifier.
      *
-     * @param <T>         the entity
-     * @param <PK>        the primary key
+     * @param <T>         the type of the entity
+     * @param <ID>        the type of the identifier
      * @param entityClazz the entity class
-     * @param pk          the primary key
+     * @param id          the entity identifier
      * @return the entity
      */
-    <T extends Persistable<? extends Serializable>, PK extends Serializable> T findById(
+    <ID extends Serializable, T extends Persistable<ID>> T findById(
             final Class<T> entityClazz,
-            final PK pk);
+            final ID id);
 
     /**
      * Load all entities.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findAll(final Class<T> entityClazz);
+    <T extends Persistable<? extends Serializable>> List<T> findAll(
+            final Class<T> entityClazz);
 
     /**
      * Load entities.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param firstResult the value of first result
      * @param maxResults  the value of max result
@@ -83,7 +84,7 @@ public interface PersistenceProvider {
     /**
      * Find by named query.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
@@ -98,7 +99,7 @@ public interface PersistenceProvider {
     /**
      * Find by named query.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
@@ -111,9 +112,9 @@ public interface PersistenceProvider {
     );
 
     /**
-     * Find by query (JPQL/HQL, etc) and parameters.
+     * Find by query (SQL/JPQL/HQL...) and parameters.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param query       the typed query
      * @param params      the typed query parameters
@@ -127,16 +128,17 @@ public interface PersistenceProvider {
     /**
      * Count all entities.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @return the number of entities
      */
-    <T extends Persistable<? extends Serializable>> long countAll(final Class<T> entityClazz);
+    <T extends Persistable<? extends Serializable>> long countAll(
+            final Class<T> entityClazz);
 
     /**
      * Count by named query and parameters.
      *
-     * @param <T>         the persistable pojo
+     * @param <T>         the type of the entity
      * @param resultClazz the number class
      * @param queryName   the named query
      * @param params      the named query parameters
@@ -148,9 +150,9 @@ public interface PersistenceProvider {
             final Map<String, ?> params);
 
     /**
-     * Count by (JPQL/HQL, etc) and parameters.
+     * Count by query (SQL/JPQL/HQL...) and parameters.
      *
-     * @param <T>         the number pojo
+     * @param <T>         the type of the entity
      * @param resultClazz the number class
      * @param query       the typed query
      * @param params      the typed query parameters
@@ -164,37 +166,41 @@ public interface PersistenceProvider {
     /**
      * Save an entity.
      *
-     * @param <T>    the entity
-     * @param entity the entity to save
+     * @param <T>    the type of the entity
+     * @param entity the entity to be saved
      * @return the saved entity
      */
-    <T extends Persistable<? extends Serializable>> T save(final T entity);
+    <T extends Persistable<? extends Serializable>> T save(
+            final T entity);
 
     /**
      * Update an entity.
      *
-     * @param <T>    the entity
-     * @param entity the entity to update
+     * @param <T>    the type of the entity
+     * @param entity the entity to be updated
      * @return the updated entity
      */
-    <T extends Persistable<? extends Serializable>> T update(final T entity);
+    <T extends Persistable<? extends Serializable>> T update(
+            final T entity);
 
     /**
      * Delete an entity.
      *
-     * @param <T>         the entity
+     * @param <T>         the type of the entity
      * @param entityClazz the entity class
-     * @param entity      the entity to delete
+     * @param entity      the entity to be deleted
      */
-    <T extends Persistable<? extends Serializable>> void delete(final Class<T> entityClazz, final T entity);
+    <T extends Persistable<? extends Serializable>> void delete(
+            final Class<T> entityClazz, final T entity);
 
     /**
-     * Delete an entity.
+     * Delete an entity by its identifier.
      *
-     * @param <T>         the entity
-     * @param <PK>        the primary key
+     * @param <T>         the type of the entity
+     * @param <ID>        the type of the identifier
      * @param entityClazz the entity class
-     * @param pk          primary key of the entity to delete
+     * @param id          the entity identifier to be deleted
      */
-    <T extends Persistable<? extends Serializable>, PK extends Serializable> void deleteById(final Class<T> entityClazz, final PK pk);
+    <ID extends Serializable, T extends Persistable<ID>> void deleteById(
+            final Class<T> entityClazz, final ID id);
 }

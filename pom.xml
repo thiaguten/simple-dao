@@ -8,7 +8,12 @@
     <version>1.0.4-SNAPSHOT</version>
 
     <name>Simple DAO</name>
-    <description>Core DAO design pattern API that greatly facilitates the exchange and use of multiple persistence providers.</description>
+
+    <description>
+        Core persistence API that greatly facilitates the
+        exchange and use of multiple persistence providers.
+    </description>
+
     <url>https://github.com/thiaguten/simple-dao</url>
 
     <inceptionYear>2015</inceptionYear>

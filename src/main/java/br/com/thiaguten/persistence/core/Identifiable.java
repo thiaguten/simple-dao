@@ -29,20 +29,23 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence;
+package br.com.thiaguten.persistence.core;
+
+import java.io.Serializable;
 
 /**
- * (Optional) Defines a class as versionable by a version number.
+ * Defines a class as identifiable by an identifier.
  *
- * @author Thiago Gutenberg
+ * @param <ID> the type of the identifier
+ * @author Thiago Gutenberg Carvalho da Costa
  */
-public interface Versionable {
+public interface Identifiable<ID extends Serializable> {
 
     /**
-     * Get a version
+     * Get an identifier.
      *
-     * @return version
+     * @return the identifier
      */
-    long getVersion();
+    ID getId();
 
 }

@@ -29,9 +29,8 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence.dao;
+package br.com.thiaguten.persistence.core;
 
-import br.com.thiaguten.persistence.Persistable;
 import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
 import java.io.Serializable;
@@ -39,42 +38,73 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Generic class, providing basic CRUD operations.
+ * Base class that provides basic CRUD operations.
  *
- * @param <T>  entity
- * @param <PK> primary key
- * @author Thiago Gutenberg
+ * @param <T>  the type of the persistent class
+ * @param <ID> the type of the identifier
+ * @author Thiago Gutenberg Carvalho da Costa
  */
-public interface BaseDAO<T extends Persistable<?>, PK extends Serializable> {
+public interface BasePersistence<ID extends Serializable, T extends Persistable<ID>> {
 
     /**
-     * Get an entity class.
-     *
-     * @return entity class
-     */
-    Class<T> getEntityClass();
-
-    /**
-     * Get an entity primary key.
-     *
-     * @return entity primary key
-     */
-    Class<PK> getPrimaryKeyClass();
-
-    /**
-     * Get a persistence provider (Jpa, Hibernate, etc).
+     * Get a persistence provider.
      *
      * @return the persistence provider implementation
      */
     PersistenceProvider getPersistenceProvider();
 
     /**
-     * Find an entity by its primary key.
+     * Get a persistence class.
      *
-     * @param pk the primary key
+     * @return the persistence class
+     */
+    Class<T> getPersistenceClass();
+
+    /**
+     * Get an the identifier class.
+     *
+     * @return the identifier class
+     */
+    Class<ID> getIdentifierClass();
+
+    /**
+     * Create an entity.
+     *
+     * @param entity entity to be created
+     * @return the created entity
+     */
+    T create(final T entity);
+
+    /**
+     * Read an entity by its identifier.
+     *
+     * @param id entity identifier to be read
      * @return the entity
      */
-    T findById(final PK pk);
+    T read(final ID id);
+
+    /**
+     * Update an entity.
+     *
+     * @param entity entity to be updated
+     * @return the updated entity
+     */
+    T update(final T entity);
+
+    /**
+     * Delete an entity.
+     *
+     * @param entity entity to be deleted
+     */
+    void delete(final T entity);
+
+    /**
+     * Delete an entity by its identifier.
+     *
+     * @param id entity identifier to be deleted
+     */
+    void deleteById(final ID id);
+
 
     /**
      * Load all entities.
@@ -122,35 +152,5 @@ public interface BaseDAO<T extends Persistable<?>, PK extends Serializable> {
      * @return the number of entities
      */
     long countAll();
-
-    /**
-     * Save an entity.
-     *
-     * @param entity the entity to save
-     * @return the saved entity
-     */
-    T save(final T entity);
-
-    /**
-     * Update an entity.
-     *
-     * @param entity the entity to update
-     * @return the updated entity
-     */
-    T update(final T entity);
-
-    /**
-     * Delete an entity.
-     *
-     * @param entity the entity to delete
-     */
-    void delete(final T entity);
-
-    /**
-     * Delete an entity by pk.
-     *
-     * @param pk primary key of the entity to delete
-     */
-    void deleteById(final PK pk);
 
 }

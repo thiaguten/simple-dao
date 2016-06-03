@@ -10,16 +10,16 @@ SimpleDAO Core Reference Implementation:
 ```java
 User user = new User("Thiago Gutenberg");
 
-BaseDAO<User, Long> dao = new GenericBaseDAO<User, Long>() {
+BasePersistence<Long, User> userPersistence = new GenericBasePersistence<Long, User>() {
     @Override
     public PersistenceProvider getPersistenceProvider() {
         return new YourPersistenceProviderImpl();
     }
 };
 
-dao.save(user);
-dao.update(user);
-dao.delete(user);
+userPersistence.create(user);
+userPersistence.update(user);
+userPersistence.delete(user);
 ...
 ```
 

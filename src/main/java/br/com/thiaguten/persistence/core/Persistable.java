@@ -29,23 +29,16 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.persistence;
+package br.com.thiaguten.persistence.core;
 
 import java.io.Serializable;
 
 /**
- * Defines a class as identifiable by a primary key.
+ * Defines a class as persistable.
  *
- * @param <PK> primary key
- * @author Thiago Gutenberg
+ * @param <ID> the type of the identifier
+ * @author Thiago Gutenberg Carvalho da Costa
  */
-public interface Identificable<PK extends Serializable> {
-
-    /**
-     * Get a primary key
-     *
-     * @return primary key
-     */
-    PK getId();
+public interface Persistable<ID extends Serializable> extends Identifiable<ID>, Serializable {
 
 }
