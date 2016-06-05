@@ -60,23 +60,25 @@ public interface PersistenceProvider {
     /**
      * Load all entities.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findAll(
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findAll(
             final Class<T> entityClazz);
 
     /**
      * Load entities.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param firstResult the value of first result
      * @param maxResults  the value of max result
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findAll(
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findAll(
             final Class<T> entityClazz,
             final int firstResult,
             final int maxResults);
@@ -84,13 +86,14 @@ public interface PersistenceProvider {
     /**
      * Find by named query.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findByNamedQuery(
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQuery(
             final Class<T> entityClazz,
             final String queryName,
             final Object... params
@@ -99,13 +102,14 @@ public interface PersistenceProvider {
     /**
      * Find by named query.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param queryName   the name of the query
      * @param params      the query parameters
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findByNamedQueryAndNamedParams(
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(
             final Class<T> entityClazz,
             final String queryName,
             final Map<String, ?> params
@@ -114,13 +118,14 @@ public interface PersistenceProvider {
     /**
      * Find by query (SQL/JPQL/HQL...) and parameters.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param query       the typed query
      * @param params      the typed query parameters
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the list of entities
      */
-    <T extends Persistable<? extends Serializable>> List<T> findByQueryAndNamedParams(
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findByQueryAndNamedParams(
             final Class<T> entityClazz,
             final String query,
             final Map<String, ?> params);
@@ -128,11 +133,12 @@ public interface PersistenceProvider {
     /**
      * Count all entities.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      * @return the number of entities
      */
-    <T extends Persistable<? extends Serializable>> long countAll(
+    <ID extends Serializable, T extends Persistable<ID>> long countAll(
             final Class<T> entityClazz);
 
     /**
@@ -166,31 +172,34 @@ public interface PersistenceProvider {
     /**
      * Save an entity.
      *
-     * @param <T>    the type of the entity
      * @param entity the entity to be saved
+     * @param <ID>   the type of the identifier
+     * @param <T>    the type of the entity
      * @return the saved entity
      */
-    <T extends Persistable<? extends Serializable>> T save(
+    <ID extends Serializable, T extends Persistable<ID>> T save(
             final T entity);
 
     /**
      * Update an entity.
      *
-     * @param <T>    the type of the entity
      * @param entity the entity to be updated
+     * @param <ID>   the type of the identifier
+     * @param <T>    the type of the entity
      * @return the updated entity
      */
-    <T extends Persistable<? extends Serializable>> T update(
+    <ID extends Serializable, T extends Persistable<ID>> T update(
             final T entity);
 
     /**
      * Delete an entity.
      *
-     * @param <T>         the type of the entity
      * @param entityClazz the entity class
      * @param entity      the entity to be deleted
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
      */
-    <T extends Persistable<? extends Serializable>> void delete(
+    <ID extends Serializable, T extends Persistable<ID>> void delete(
             final Class<T> entityClazz, final T entity);
 
     /**

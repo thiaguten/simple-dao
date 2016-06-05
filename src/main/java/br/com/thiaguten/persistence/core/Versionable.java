@@ -32,7 +32,7 @@
 package br.com.thiaguten.persistence.core;
 
 /**
- * (Optional) Defines a class as versionable by a version number.
+ * Defines a class as versionable by a version number.
  *
  * @author Thiago Gutenberg Carvalho da Costa
  */

@@ -202,32 +202,32 @@ public class Example {
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> List<T> findAll(Class<T> entityClazz) {
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findAll(Class<T> entityClazz) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> List<T> findAll(Class<T> entityClazz, int firstResult, int maxResults) {
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findAll(Class<T> entityClazz, int firstResult, int maxResults) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> List<T> findByNamedQuery(Class<T> entityClazz, String queryName, Object... params) {
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQuery(Class<T> entityClazz, String queryName, Object... params) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> List<T> findByNamedQueryAndNamedParams(Class<T> entityClazz, String queryName, Map<String, ?> params) {
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(Class<T> entityClazz, String queryName, Map<String, ?> params) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> List<T> findByQueryAndNamedParams(Class<T> entityClazz, String query, Map<String, ?> params) {
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findByQueryAndNamedParams(Class<T> entityClazz, String query, Map<String, ?> params) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> long countAll(Class<T> entityClazz) {
+        public <ID extends Serializable, T extends Persistable<ID>> long countAll(Class<T> entityClazz) {
             throw new UnsupportedOperationException("Operation not supported");
         }
 
@@ -242,19 +242,19 @@ public class Example {
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> T save(T entity) {
+        public <ID extends Serializable, T extends Persistable<ID>> T save(T entity) {
             System.out.println("Saving " + entity);
             return entity;
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> T update(T entity) {
+        public <ID extends Serializable, T extends Persistable<ID>> T update(T entity) {
             System.out.println("Updating " + entity);
             return entity;
         }
 
         @Override
-        public <T extends Persistable<? extends Serializable>> void delete(Class<T> entityClazz, T entity) {
+        public <ID extends Serializable, T extends Persistable<ID>> void delete(Class<T> entityClazz, T entity) {
             System.out.println("Deleting " + entity);
         }
 
@@ -262,7 +262,6 @@ public class Example {
         public <ID extends Serializable, T extends Persistable<ID>> void deleteById(Class<T> entityClazz, ID id) {
             throw new UnsupportedOperationException("Operation not supported");
         }
-
     }
 
 }
