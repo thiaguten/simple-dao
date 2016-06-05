@@ -31,10 +31,9 @@
  */
 package br.com.thiaguten.persistence.ri;
 
-import br.com.thiaguten.persistence.core.BasePersistence;
-import br.com.thiaguten.persistence.core.GenericBasePersistence;
+import br.com.thiaguten.persistence.core.GenericPersistence;
 import br.com.thiaguten.persistence.core.Persistable;
-import br.com.thiaguten.persistence.entity.BaseEntity;
+import br.com.thiaguten.persistence.core.Persistence;
 import br.com.thiaguten.persistence.spi.PersistenceProvider;
 
 import java.io.Serializable;
@@ -60,76 +59,26 @@ public class Example {
         userDAO.customOperation(user);
 
         System.out.println("\nInner class implementation approach:\n");
-        final BasePersistence<Long, User> basePersistence = new GenericBasePersistence<Long, User>() {
+        final Persistence<Long, User> persistence = new GenericPersistence<Long, User>() {
             @Override
             public PersistenceProvider getPersistenceProvider() {
                 return myPersistenceProvider;
             }
         };
 
-        basePersistence.create(user);
-        basePersistence.update(user);
-        basePersistence.delete(user);
+        persistence.create(user);
+        persistence.update(user);
+        persistence.delete(user);
 
-//        System.out.println("\nJava 8 function class with concrete class implementation approach:\n");
-//        BasePersistenceFunction<User, UserDAO> concreteBasePersistenceFunction = (User u) -> userDAO;
-//
-//        UserDAO concreteUserDAO = createBasePersistence(user, concreteBasePersistenceFunction);
-//
-//        concreteUserDAO.create(user);
-//        concreteUserDAO.update(user);
-//        concreteUserDAO.delete(user);
-//        concreteUserDAO.customOperation(user);
-//
-//        System.out.println("\nJava 8 function class with inner class implementation approach:\n");
-//        BasePersistenceFunction<User, BasePersistence<Long, User>> basePersistenceFunction = (User u) -> basePersistence;
-//
-//        BasePersistence<Long, User> genericBasePersistence = createBasePersistence(user, basePersistenceFunction);
-//
-//        genericBasePersistence.create(user);
-//        genericBasePersistence.update(user);
-//        genericBasePersistence.delete(user);
-//
-//        System.out.println("\nJava 8 function class with inner class implementation 2 approach:\n");
-//
-//        genericBasePersistence = createBasePersistence(user, (Function<User, BasePersistence<Long, User>>) (User u) -> basePersistence);
-//
-//        genericBasePersistence.create(user);
-//        genericBasePersistence.update(user);
-//        genericBasePersistence.delete(user);
     }
 
-//    @FunctionalInterface
-//    public interface BasePersistenceFunction<T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> {
-//        R applyToBaseDAO(T t);
-//    }
-//
-//    public static <T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> R createBasePersistence(T t, BasePersistenceFunction<T, R> f) {
-//        return f.applyToBaseDAO(t);
-//    }
-//
-//    public static <T extends Persistable<? extends Serializable>, R extends BasePersistence<? extends Serializable, T>> R createBasePersistence(T t, Function<T, R> f) {
-//        return f.apply(t);
-//    }
-
-    /**
-     * Persistable class.
-     *
-     * @author Thiago Gutenberg Carvalho da Costa
-     */
-    private static final class User extends BaseEntity<Long> {
+    private static final class User implements Persistable<Long> {
 
         private Long id;
         private String name;
 
         public User(String name) {
             this.name = name;
-        }
-
-        // for clone proposes
-        public User(User user) {
-            this.id = user.getId();
-            this.name = user.getName();
         }
 
         @Override
@@ -155,22 +104,12 @@ public class Example {
         }
     }
 
-    /**
-     * Optional User DAO interface to declare custom operations.
-     *
-     * @author Thiago Gutenberg Carvalho da Costa
-     */
-    public interface UserDAO extends BasePersistence<Long, User> {
+    public interface UserDAO extends Persistence<Long, User> {
 
         void customOperation(User user);
     }
 
-    /**
-     * User DAO Implementation.
-     *
-     * @author Thiago Gutenberg Carvalho da Costa
-     */
-    private static final class UserDAOImpl extends GenericBasePersistence<Long, User> implements UserDAO {
+    private static final class UserDAOImpl extends GenericPersistence<Long, User> implements UserDAO {
 
         private final PersistenceProvider persistenceProvider;
 
@@ -189,11 +128,6 @@ public class Example {
         }
     }
 
-    /**
-     * My persistence provider implementation.
-     *
-     * @author Thiago Gutenberg Carvalho da Costa
-     */
     private static final class MyPersistenceProvider implements PersistenceProvider {
 
         @Override

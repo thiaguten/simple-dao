@@ -44,7 +44,7 @@ import java.util.Map;
  * @param <ID> the type of the identifier
  * @author Thiago Gutenberg Carvalho da Costa
  */
-public interface BasePersistence<ID extends Serializable, T extends Persistable<ID>> {
+public interface Persistence<ID extends Serializable, T extends Persistable<ID>> {
 
     /**
      * Get a persistence provider.

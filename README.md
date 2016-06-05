@@ -8,12 +8,14 @@ Core DAO API that greatly facilitates the usage of multiple persistence provider
 SimpleDAO Core Reference Implementation:
 
 ```java
-User user = new User("Thiago Gutenberg");
+class User implements Persistable<Long> {
+    ...
+}
 
-BasePersistence<Long, User> userPersistence = new GenericBasePersistence<Long, User>() {
+Persistence<Long, User> persistence = new GenericPersistence<Long, User>() {
     @Override
     public PersistenceProvider getPersistenceProvider() {
-        return new YourPersistenceProviderImpl();
+        return new SomePersistenceProviderImpl();
     }
 };
 
