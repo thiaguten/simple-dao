@@ -12,7 +12,7 @@ class User implements Persistable<Long> {
     ...
 }
 
-Persistence<Long, User> persistence = new BasePersistence<Long, User>() {
+Persistence<Long, User> userPersistence = new BasePersistence<Long, User>() {
     @Override
     public PersistenceProvider getPersistenceProvider() {
         return new SomePersistenceProviderImpl();
