@@ -45,16 +45,16 @@ import java.util.Map;
  * @param <ID> the type of the identifier
  * @author Thiago Gutenberg Carvalho da Costa
  */
-public abstract class GenericPersistence<ID extends Serializable, T extends Persistable<ID>> implements Persistence<ID, T> {
+public abstract class BasePersistence<ID extends Serializable, T extends Persistable<ID>> implements Persistence<ID, T> {
 
     private final Class<T> persistenceClass;
     private final Class<ID> identifierClass;
 
     /**
-     * Construct a GenericPersistence.
+     * Construct a BasePersistence.
      */
     @SuppressWarnings("unchecked")
-    public GenericPersistence() {
+    public BasePersistence() {
         java.lang.reflect.ParameterizedType genericSuperClass = (java.lang.reflect.ParameterizedType) getClass().getGenericSuperclass();
         this.identifierClass = (Class<ID>) genericSuperClass.getActualTypeArguments()[0];
         this.persistenceClass = (Class<T>) genericSuperClass.getActualTypeArguments()[1];

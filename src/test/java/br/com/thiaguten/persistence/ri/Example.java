@@ -31,7 +31,7 @@
  */
 package br.com.thiaguten.persistence.ri;
 
-import br.com.thiaguten.persistence.core.GenericPersistence;
+import br.com.thiaguten.persistence.core.BasePersistence;
 import br.com.thiaguten.persistence.core.Persistable;
 import br.com.thiaguten.persistence.core.Persistence;
 import br.com.thiaguten.persistence.spi.PersistenceProvider;
@@ -59,7 +59,7 @@ public class Example {
         userDAO.customOperation(user);
 
         System.out.println("\nInner class implementation approach:\n");
-        final Persistence<Long, User> persistence = new GenericPersistence<Long, User>() {
+        final Persistence<Long, User> persistence = new BasePersistence<Long, User>() {
             @Override
             public PersistenceProvider getPersistenceProvider() {
                 return myPersistenceProvider;
@@ -109,7 +109,7 @@ public class Example {
         void customOperation(User user);
     }
 
-    private static final class UserDAOImpl extends GenericPersistence<Long, User> implements UserDAO {
+    private static final class UserDAOImpl extends BasePersistence<Long, User> implements UserDAO {
 
         private final PersistenceProvider persistenceProvider;
 
