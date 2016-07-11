@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/thiaguten/simple-dao.svg)](https://travis-ci.org/thiaguten/simple-dao)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/br.com.thiaguten.persistence/simple-dao/badge.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22br.com.thiaguten.persistence%22%20AND%20a%3A%22simple-dao%22)
 [![Javadocs](http://www.javadoc.io/badge/br.com.thiaguten.persistence/simple-dao.svg)](http://www.javadoc.io/doc/br.com.thiaguten.persistence/simple-dao)
-[![License](https://img.shields.io/badge/license-apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Dependency Status](https://www.versioneye.com/user/projects/577e7c025bb13900493de577/badge.svg)](https://www.versioneye.com/user/projects/577e7c025bb13900493de577)
 
 Core DAO API that greatly facilitates the usage of multiple persistence providers. E.g: (JPA, Hibernate, Etc...).
