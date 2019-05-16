@@ -29,6 +29,8 @@ import java.util.Map;
 
 /**
  * Reference implementation.
+ * 
+ * @author Thiago Gutenberg Carvalho da Costa
  */
 public class Example {
 
@@ -59,7 +61,10 @@ public class Example {
 
     }
 
+    @SuppressWarnings("unused")
     private static final class User implements Persistable<Long> {
+
+		private static final long serialVersionUID = 9160924280752481362L;
 
         private Long id;
         private String name;
@@ -140,6 +145,11 @@ public class Example {
         @Override
         public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(Class<T> entityClazz, String queryName, Map<String, ?> params) {
             throw new UnsupportedOperationException("Operation not supported");
+        }
+
+        @Override
+        public <ID extends Serializable, T extends Persistable<ID>> List<T> findByQuery(Class<T> entityClazz, String query, Object... params) {
+        	throw new UnsupportedOperationException("Operation not supported");
         }
 
         @Override

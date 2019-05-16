@@ -145,6 +145,22 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
      * {@inheritDoc}
      */
     @Override
+    public List<T> findByQuery(String query, Object... params) {
+    	return getPersistenceProvider().findByQuery(persistenceClass, query, params);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<T> findByQueryAndNamedParams(String query, Map<String, ?> params) {
+    	return getPersistenceProvider().findByQueryAndNamedParams(persistenceClass, query, params);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public long countAll() {
         return getPersistenceProvider().countAll(persistenceClass);
     }

@@ -101,7 +101,7 @@ public interface Persistence<ID extends Serializable, T extends Persistable<ID>>
     List<T> findAll();
 
     /**
-     * Load entites.
+     * Load entities.
      *
      * @param firstResult first result
      * @param maxResults  max results
@@ -118,7 +118,7 @@ public interface Persistence<ID extends Serializable, T extends Persistable<ID>>
      */
     List<T> findByNamedQuery(
             final String queryName,
-            Object... params
+            final Object... params
     );
 
     /**
@@ -133,6 +133,28 @@ public interface Persistence<ID extends Serializable, T extends Persistable<ID>>
             final Map<String, ?> params
     );
 
+    /**
+     * Find by query.
+     *
+     * @param query  the query string
+     * @param params the query string positional parameters
+     * @return the list of entities
+     */
+    List<T> findByQuery(
+    		final String query,
+    		final Object... params);
+
+    /**
+     * Find by query.
+     *
+     * @param query  the query string
+     * @param params the query string parameters
+     * @return the list of entities
+     */
+	List<T> findByQueryAndNamedParams(
+			final String query,
+			final Map<String, ?> params);
+    
     /**
      * Count all entities.
      *

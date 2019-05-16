@@ -30,6 +30,6 @@ public interface Versionable {
      *
      * @return the version
      */
-    long getVersion();
+    Long getVersion();
 
 }

@@ -75,7 +75,7 @@ public interface PersistenceProvider {
      *
      * @param entityClazz the entity class
      * @param queryName   the name of the query
-     * @param params      the query parameters
+     * @param params      the query positional parameters
      * @param <ID>        the type of the identifier
      * @param <T>         the type of the entity
      * @return the list of entities
@@ -103,11 +103,26 @@ public interface PersistenceProvider {
     );
 
     /**
+     * Find by query (JPQL/HQL, etc).
+     *
+     * @param entityClazz the entity class
+     * @param query       the query string
+     * @param params      the query string positional parameters
+     * @param <ID>        the type of the identifier
+     * @param <T>         the type of the entity
+     * @return the list of entities
+     */
+    <ID extends Serializable, T extends Persistable<ID>> List<T> findByQuery(
+    		final Class<T> entityClazz,
+    		final String query,
+    		final Object... params);
+    
+    /**
      * Find by query (SQL/JPQL/HQL...) and parameters.
      *
      * @param entityClazz the entity class
-     * @param query       the typed query
-     * @param params      the typed query parameters
+     * @param query       the query string
+     * @param params      the query string parameters
      * @param <ID>        the type of the identifier
      * @param <T>         the type of the entity
      * @return the list of entities
@@ -147,8 +162,8 @@ public interface PersistenceProvider {
      *
      * @param <T>         the type of the entity
      * @param resultClazz the number class
-     * @param query       the typed query
-     * @param params      the typed query parameters
+     * @param query       the query string
+     * @param params      the query parameters
      * @return the count of entities
      */
     <T extends Number> T countByQueryAndNamedParams(
