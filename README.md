@@ -35,4 +35,4 @@ SimpleDAO SPI Implementations:
 - [SimpleDAO JPA](https://github.com/thiaguten/simple-dao-jpa).
 - [SimpleDAO Hibernate](https://github.com/thiaguten/simple-dao-hibernate).
 
-Requires JDK 1.6 or higher.
+Requires JDK 1.8 or higher.
