@@ -43,7 +43,8 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
    */
   @SuppressWarnings("unchecked")
   public BasePersistence() {
-    java.lang.reflect.ParameterizedType genericSuperClass = (java.lang.reflect.ParameterizedType) getClass().getGenericSuperclass();
+    java.lang.reflect.ParameterizedType genericSuperClass = (java.lang.reflect.ParameterizedType) getClass()
+        .getGenericSuperclass();
     this.identifierClass = (Class<ID>) genericSuperClass.getActualTypeArguments()[0];
     this.persistenceClass = (Class<T>) genericSuperClass.getActualTypeArguments()[1];
   }
@@ -131,15 +132,7 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
    */
   @Override
   public List<T> findByNamedQuery(String queryName, Object... params) {
-    return findByNamedQuery(false, queryName, params);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<T> findByNamedQuery(boolean cacheable, String queryName, Object... params) {
-    return getPersistenceProvider().findByNamedQuery(persistenceClass, cacheable, queryName, params);
+    return getPersistenceProvider().findByNamedQuery(persistenceClass, queryName, params);
   }
 
   /**
@@ -147,15 +140,8 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
    */
   @Override
   public List<T> findByNamedQueryAndNamedParams(String queryName, Map<String, ?> params) {
-    return findByNamedQueryAndNamedParams(false, queryName, params);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<T> findByNamedQueryAndNamedParams(boolean cacheable, String queryName, Map<String, ?> params) {
-    return getPersistenceProvider().findByNamedQueryAndNamedParams(persistenceClass, cacheable, queryName, params);
+    return getPersistenceProvider()
+        .findByNamedQueryAndNamedParams(persistenceClass, queryName, params);
   }
 
   /**
@@ -163,15 +149,7 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
    */
   @Override
   public List<T> findByQuery(String query, Object... params) {
-    return findByQuery(false, query, params);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<T> findByQuery(boolean cacheable, String query, Object... params) {
-    return getPersistenceProvider().findByQuery(persistenceClass, cacheable, query, params);
+    return getPersistenceProvider().findByQuery(persistenceClass, query, params);
   }
 
   /**
@@ -179,15 +157,7 @@ public abstract class BasePersistence<ID extends Serializable, T extends Persist
    */
   @Override
   public List<T> findByQueryAndNamedParams(String query, Map<String, ?> params) {
-    return findByQueryAndNamedParams(false, query, params);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<T> findByQueryAndNamedParams(boolean cacheable, String query, Map<String, ?> params) {
-    return getPersistenceProvider().findByQueryAndNamedParams(persistenceClass, cacheable, query, params);
+    return getPersistenceProvider().findByQueryAndNamedParams(persistenceClass, query, params);
   }
 
   /**

@@ -123,37 +123,11 @@ public interface Persistence<ID extends Serializable, T extends Persistable<ID>>
   /**
    * Find by named query.
    *
-   * @param cacheable enable cache
-   * @param queryName the name of the query
-   * @param params the query parameters
-   * @return the list of entities
-   */
-  List<T> findByNamedQuery(
-      final boolean cacheable,
-      final String queryName,
-      final Object... params);
-
-  /**
-   * Find by named query.
-   *
    * @param queryName the name of the query
    * @param params the query parameters
    * @return the list of entities
    */
   List<T> findByNamedQueryAndNamedParams(
-      final String queryName,
-      final Map<String, ?> params);
-
-  /**
-   * Find by named query.
-   *
-   * @param cacheable enable query cache
-   * @param queryName the name of the query
-   * @param params the query parameters
-   * @return the list of entities
-   */
-  List<T> findByNamedQueryAndNamedParams(
-      final boolean cacheable,
       final String queryName,
       final Map<String, ?> params);
 
@@ -171,37 +145,11 @@ public interface Persistence<ID extends Serializable, T extends Persistable<ID>>
   /**
    * Find by query.
    *
-   * @param cacheable enable query cache
-   * @param query the query string
-   * @param params the query string positional parameters
-   * @return the list of entities
-   */
-  List<T> findByQuery(
-      final boolean cacheable,
-      final String query,
-      final Object... params);
-
-  /**
-   * Find by query.
-   *
    * @param query the query string
    * @param params the query string parameters
    * @return the list of entities
    */
   List<T> findByQueryAndNamedParams(
-      final String query,
-      final Map<String, ?> params);
-
-  /**
-   * Find by query.
-   *
-   * @param cacheable enable query cache
-   * @param query the query string
-   * @param params the query string parameters
-   * @return the list of entities
-   */
-  List<T> findByQueryAndNamedParams(
-      final boolean cacheable,
       final String query,
       final Map<String, ?> params);
 

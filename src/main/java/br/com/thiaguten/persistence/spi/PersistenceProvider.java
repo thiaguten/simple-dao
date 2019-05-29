@@ -89,23 +89,6 @@ public interface PersistenceProvider {
    * Find by named query.
    *
    * @param entityClazz the entity class
-   * @param cacheable enable query cache
-   * @param queryName the name of the query
-   * @param params the query positional parameters
-   * @param <ID> the type of the identifier
-   * @param <T> the type of the entity
-   * @return the list of entities
-   */
-  <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQuery(
-      Class<T> entityClazz,
-      boolean cacheable,
-      String queryName,
-      Object... params);
-
-  /**
-   * Find by named query.
-   *
-   * @param entityClazz the entity class
    * @param queryName the name of the query
    * @param params the query parameters
    * @param <ID> the type of the identifier
@@ -116,23 +99,6 @@ public interface PersistenceProvider {
       final Class<T> entityClazz,
       final String queryName,
       final Map<String, ?> params);
-
-  /**
-   * Find by named query.
-   *
-   * @param entityClazz the entity class
-   * @param cacheable enable query cache
-   * @param queryName the name of the query
-   * @param params the query parameters
-   * @param <ID> the type of the identifier
-   * @param <T> the type of the entity
-   * @return the list of entities
-   */
-  <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(
-      Class<T> entityClazz,
-      boolean cacheable,
-      String queryName,
-      Map<String, ?> params);
 
   /**
    * Find by query (JPQL/HQL, etc).
@@ -150,23 +116,6 @@ public interface PersistenceProvider {
       final Object... params);
 
   /**
-   * Find by query (JPQL/HQL, etc).
-   *
-   * @param entityClazz the entity class
-   * @param cacheable enable query cache
-   * @param query the query string
-   * @param params the query string positional parameters
-   * @param <ID> the type of the identifier
-   * @param <T> the type of the entity
-   * @return the list of entities
-   */
-  <ID extends Serializable, T extends Persistable<ID>> List<T> findByQuery(
-      Class<T> entityClazz,
-      boolean cacheable,
-      String query,
-      Object... params);
-
-  /**
    * Find by query (SQL/JPQL/HQL...) and parameters.
    *
    * @param entityClazz the entity class
@@ -180,23 +129,6 @@ public interface PersistenceProvider {
       final Class<T> entityClazz,
       final String query,
       final Map<String, ?> params);
-
-  /**
-   * Find by query (SQL/JPQL/HQL...) and parameters.
-   *
-   * @param entityClazz the entity class
-   * @param cacheable enable query cache
-   * @param query the query string
-   * @param params the query string parameters
-   * @param <ID> the type of the identifier
-   * @param <T> the type of the entity
-   * @return the list of entities
-   */
-  <ID extends Serializable, T extends Persistable<ID>> List<T> findByQueryAndNamedParams(
-      Class<T> entityClazz,
-      boolean cacheable,
-      String query,
-      Map<String, ?> params);
 
   /**
    * Count all entities.

@@ -147,20 +147,8 @@ public class Example {
     }
 
     @Override
-    public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQuery(
-        Class<T> entityClazz, boolean cacheable, String queryName, Object... params) {
-      throw new UnsupportedOperationException("Operation not supported");
-    }
-
-    @Override
     public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(
         Class<T> entityClazz, String queryName, Map<String, ?> params) {
-      throw new UnsupportedOperationException("Operation not supported");
-    }
-
-    @Override
-    public <ID extends Serializable, T extends Persistable<ID>> List<T> findByNamedQueryAndNamedParams(
-        Class<T> entityClazz, boolean cacheable, String queryName, Map<String, ?> params) {
       throw new UnsupportedOperationException("Operation not supported");
     }
 
@@ -171,20 +159,8 @@ public class Example {
     }
 
     @Override
-    public <ID extends Serializable, T extends Persistable<ID>> List<T> findByQuery(
-        Class<T> entityClazz, boolean cacheable, String query, Object... params) {
-      throw new UnsupportedOperationException("Operation not supported");
-    }
-
-    @Override
     public <ID extends Serializable, T extends Persistable<ID>> List<T> findByQueryAndNamedParams(
         Class<T> entityClazz, String query, Map<String, ?> params) {
-      throw new UnsupportedOperationException("Operation not supported");
-    }
-
-    @Override
-    public <ID extends Serializable, T extends Persistable<ID>> List<T> findByQueryAndNamedParams(
-        Class<T> entityClazz, boolean cacheable, String query, Map<String, ?> params) {
       throw new UnsupportedOperationException("Operation not supported");
     }
 
